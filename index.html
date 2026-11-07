@@ -1,1147 +1,633 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>JOEFEL, M. LATO // Cyber Portfolio</title>
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: #020604;
-    color: #00ff88;
-    font-family: "Courier New", monospace;
-    overflow-x: hidden;
-}
-
-/* ================= MATRIX BACKGROUND ================= */
-
-#matrix {
-    position: fixed;
-    inset: 0;
-    z-index: -5;
-    opacity: 0.16;
-}
-
-/* ================= SCANLINES ================= */
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1000;
-
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            rgba(0,255,120,0.025) 0px,
-            rgba(0,255,120,0.025) 1px,
-            transparent 2px,
-            transparent 5px
-        );
-}
-
-/* ================= HEADER ================= */
-
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 500;
-
-    padding: 18px 6%;
-
-    background: rgba(0, 10, 6, 0.88);
-    backdrop-filter: blur(10px);
-
-    border-bottom: 1px solid #00ff8855;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #00ff88;
-
-    text-shadow:
-        0 0 5px #00ff88,
-        0 0 15px #00ff88;
-}
-
-.logo span {
-    color: #00ffff;
-}
-
-nav ul {
-    display: flex;
-    gap: 25px;
-    list-style: none;
-}
-
-nav a {
-    color: #00ff88;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: #00ffff;
-    text-shadow: 0 0 15px #00ffff;
-}
-
-/* ================= HERO ================= */
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 100px 8%;
-}
-
-.hero-content {
-    max-width: 1000px;
-    width: 100%;
-}
-
-.status {
-    color: #00ffff;
-    margin-bottom: 15px;
-}
-
-.status::before {
-    content: "● ";
-    color: #00ff88;
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    50% {
-        opacity: 0;
-    }
-}
-
-.hero h1 {
-    font-size: clamp(45px, 9vw, 100px);
-    letter-spacing: 5px;
-
-    text-shadow:
-        0 0 5px #00ff88,
-        0 0 20px #00ff88,
-        0 0 50px #00ff8844;
-}
-
-.hero h1 span {
-    color: #00ffff;
-}
-
-.subtitle {
-    margin-top: 15px;
-    font-size: clamp(16px, 3vw, 25px);
-    color: #aaffdd;
-}
-
-.cursor {
-    display: inline-block;
-    width: 10px;
-    height: 24px;
-    background: #00ff88;
-    animation: cursor 0.7s infinite;
-}
-
-@keyframes cursor {
-    50% {
-        opacity: 0;
-    }
-}
-
-/* ================= TERMINAL ================= */
-
-.terminal {
-    margin-top: 35px;
-
-    background: rgba(0, 15, 8, 0.85);
-
-    border: 1px solid #00ff8866;
-    border-radius: 10px;
-
-    box-shadow:
-        0 0 30px #00ff8815,
-        inset 0 0 30px #00ff8808;
-
-    overflow: hidden;
-}
-
-.terminal-bar {
-    padding: 10px 15px;
-
-    background: #07130d;
-
-    border-bottom: 1px solid #00ff8833;
-}
-
-.dots {
-    display: inline-flex;
-    gap: 7px;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #00ff88;
-}
-
-.terminal-body {
-    padding: 20px;
-    min-height: 150px;
-}
-
-.prompt {
-    color: #00ffff;
-}
-
-.command {
-    color: white;
-}
-
-.output {
-    color: #7affb9;
-    margin: 8px 0;
-}
-
-/* ================= BUTTONS ================= */
-
-.buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.btn {
-    display: inline-block;
-
-    padding: 12px 20px;
-
-    border: 1px solid #00ff88;
-    color: #00ff88;
-
-    text-decoration: none;
-
-    background: #001b0d;
-
-    transition: 0.3s;
-
-    box-shadow: 0 0 10px #00ff8822;
-}
-
-.btn:hover {
-    background: #00ff88;
-    color: #001b0d;
-
-    box-shadow:
-        0 0 10px #00ff88,
-        0 0 30px #00ff88;
-}
-
-/* ================= SECTIONS ================= */
-
-section {
-    padding: 100px 8%;
-}
-
-.section-title {
-    font-size: 35px;
-    margin-bottom: 45px;
-
-    color: #00ffff;
-
-    text-shadow:
-        0 0 10px #00ffff,
-        0 0 25px #00ffff44;
-}
-
-.section-title::before {
-    content: "[ ";
-}
-
-.section-title::after {
-    content: " ]";
-}
-
-/* ================= ABOUT ================= */
-
-.about {
-    max-width: 900px;
-    line-height: 1.9;
-    color: #b7ffd9;
-}
-
-.highlight {
-    color: #00ffff;
-}
-
-/* ================= STATS ================= */
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-
-    margin-top: 40px;
-}
-
-.stat {
-    padding: 25px;
-
-    border: 1px solid #00ff8844;
-
-    background: rgba(0, 25, 13, 0.65);
-
-    transition: 0.3s;
-}
-
-.stat:hover {
-    transform: translateY(-5px);
-
-    border-color: #00ffff;
-
-    box-shadow: 0 0 25px #00ffff22;
-}
-
-.stat-number {
-    font-size: 35px;
-    color: #00ffff;
-}
-
-.stat-label {
-    color: #8affbd;
-    margin-top: 5px;
-}
-
-/* ================= SKILLS ================= */
-
-.skills {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.skill {
-    padding: 20px;
-
-    border: 1px solid #00ff8844;
-
-    background: rgba(0, 20, 10, 0.65);
-
-    transition: 0.3s;
-}
-
-.skill:hover {
-    border-color: #00ffff;
-
-    box-shadow:
-        0 0 20px #00ff8822,
-        inset 0 0 20px #00ff8811;
-}
-
-.skill-name {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.bar {
-    width: 100%;
-    height: 7px;
-
-    background: #062015;
-
-    overflow: hidden;
-}
-
-.progress {
-    height: 100%;
-    background: #00ff88;
-
-    box-shadow: 0 0 15px #00ff88;
-}
-
-/* ================= PROJECTS ================= */
-
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 25px;
-}
-
-.project {
-    position: relative;
-
-    padding: 25px;
-
-    min-height: 230px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(0,255,136,0.08),
-            rgba(0,10,5,0.9)
-        );
-
-    border: 1px solid #00ff8844;
-
-    transition: 0.4s;
-}
-
-.project:hover {
-    transform: translateY(-8px) scale(1.01);
-
-    border-color: #00ffff;
-
-    box-shadow:
-        0 0 30px #00ff8833;
-}
-
-.project-number {
-    color: #00ffff;
-    font-size: 14px;
-}
-
-.project h3 {
-    margin: 15px 0;
-
-    font-size: 22px;
-
-    color: #00ff88;
-}
-
-.project p {
-    color: #9affc7;
-    line-height: 1.7;
-}
-
-.project a {
-    display: inline-block;
-    margin-top: 20px;
-
-    color: #00ffff;
-    text-decoration: none;
-}
-
-/* ================= COMMAND CENTER ================= */
-
-.command-box {
-    max-width: 900px;
-
-    border: 1px solid #00ff8844;
-
-    background: #000d07;
-
-    padding: 20px;
-
-    box-shadow: inset 0 0 40px #00ff8808;
-}
-
-.command-output {
-    height: 180px;
-
-    overflow-y: auto;
-
-    margin-bottom: 15px;
-
-    color: #8affbd;
-
-    line-height: 1.7;
-}
-
-.command-input {
-    display: flex;
-    gap: 10px;
-}
-
-.command-input span {
-    color: #00ffff;
-}
-
-.command-input input {
-    flex: 1;
-
-    background: transparent;
-
-    border: none;
-    outline: none;
-
-    color: white;
-
-    font-family: inherit;
-    font-size: 16px;
-}
-
-/* ================= CONTACT ================= */
-
-.contact {
-    text-align: center;
-
-    border-top: 1px solid #00ff8822;
-}
-
-.contact p {
-    color: #9affc7;
-    margin-bottom: 25px;
-}
-
-/* ================= FOOTER ================= */
-
-footer {
-    padding: 25px;
-
-    text-align: center;
-
-    border-top: 1px solid #00ff8833;
-
-    color: #4dff9b;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width: 700px) {
-
-    header {
-        padding: 15px;
-    }
-
-    nav ul {
-        display: none;
-    }
-
-    .hero {
-        padding: 110px 6% 60px;
-    }
-
-    section {
-        padding: 70px 6%;
-    }
-
-    .hero h1 {
-        letter-spacing: 2px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="Portfolio of Joefel M. Lato, a Web Developer building clean, responsive, and modern web experiences."
+    >
+    <meta name="theme-color" content="#4f46e5">
+
+    <title>Joefel M. Lato | Web Developer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
 </head>
 
-<body>
+<body class="bg-white text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
 
-<canvas id="matrix"></canvas>
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+        <nav
+            class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 lg:px-8"
+            aria-label="Main navigation"
+        >
+            <a
+                href="#home"
+                class="text-lg font-bold tracking-tight text-slate-900 dark:text-white"
+                aria-label="Joefel M. Lato home"
+            >
+                Joefel<span class="text-indigo-600">.</span>
+            </a>
 
-<!-- ================= NAVIGATION ================= -->
+            <!-- Desktop navigation -->
+            <div class="hidden items-center gap-8 md:flex">
+                <a href="#about" class="text-sm font-medium text-slate-600 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">About</a>
+                <a href="#skills" class="text-sm font-medium text-slate-600 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">Skills</a>
+                <a href="#projects" class="text-sm font-medium text-slate-600 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">Projects</a>
+                <a href="#contact" class="text-sm font-medium text-slate-600 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">Contact</a>
 
-<header>
-<nav>
+                <button
+                    id="theme-toggle"
+                    type="button"
+                    class="rounded-lg p-2 text-slate-600 transition hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-indigo-400"
+                    aria-label="Toggle dark mode"
+                    aria-pressed="false"
+                >
+                    <svg id="theme-icon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364-.707.707M6.343 17.657l-.707.707m12.728 0-.707-.707M6.343 6.343l-.707-.707M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                    </svg>
+                </button>
+            </div>
 
-<div class="logo">
-JOEFEL, M. LATO<span>.SYS</span>
-</div>
+            <!-- Mobile controls -->
+            <div class="flex items-center gap-2 md:hidden">
+                <button
+                    id="mobile-theme-toggle"
+                    type="button"
+                    class="rounded-lg p-2 text-slate-600 transition hover:bg-slate-100 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-300 dark:hover:bg-slate-800"
+                    aria-label="Toggle dark mode"
+                    aria-pressed="false"
+                >
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364-.707.707M6.343 17.657l-.707.707m12.728 0-.707-.707M6.343 6.343l-.707-.707M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                    </svg>
+                </button>
 
-<ul>
-<li><a href="#about">ABOUT</a></li>
-<li><a href="#skills">SKILLS</a></li>
-<li><a href="#projects">PROJECTS</a></li>
-<li><a href="#terminal">TERMINAL</a></li>
-<li><a href="#contact">CONTACT</a></li>
-</ul>
+                <button
+                    id="menu-toggle"
+                    type="button"
+                    class="rounded-lg p-2 text-slate-700 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-slate-200 dark:hover:bg-slate-800"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                >
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
 
-</nav>
-</header>
+        <!-- Mobile navigation -->
+        <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white px-5 py-4 dark:border-slate-800 dark:bg-slate-950 md:hidden">
+            <div class="flex flex-col gap-1">
+                <a href="#about" class="rounded-lg px-3 py-3 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+                <a href="#skills" class="rounded-lg px-3 py-3 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Skills</a>
+                <a href="#projects" class="rounded-lg px-3 py-3 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Projects</a>
+                <a href="#contact" class="rounded-lg px-3 py-3 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+            </div>
+        </div>
+    </header>
 
+    <main>
 
-<!-- ================= HERO ================= -->
+        <!-- Hero -->
+        <section id="home" class="scroll-mt-24">
+            <div class="mx-auto flex min-h-[calc(100vh-73px)] max-w-6xl items-center px-5 py-20 lg:px-8">
+                <div class="flex max-w-4xl flex-col-reverse items-center gap-10 md:flex-row md:items-center">
+                    <div class="max-w-3xl">
+                        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
+                            Hello, I'm
+                        </p>
 
-<section class="hero">
+                        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+                            Joefel M. Lato
+                        </h1>
 
-<div class="hero-content">
+                        <h2 class="mt-4 text-2xl font-semibold text-slate-600 dark:text-slate-300 sm:text-3xl">
+                            Web Developer
+                        </h2>
 
-<div class="status">
-SYSTEM ONLINE // PORTFOLIO ACTIVE
-</div>
+                        <p class="mt-6 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-400 sm:text-lg">
+                            I build clean, responsive, and user-focused websites with modern web technologies.
+                        </p>
 
-<h1>
-JOEFEL, M. LATO<span>_</span>
-</h1>
+                        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                        <a
+                            href="#projects"
+                            class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950"
+                        >
+                            View Projects
+                        </a>
 
-<div class="subtitle">
-&gt; PROGRAMMER / DEVELOPER / CYBER TECH ENTHUSIAST
-<span class="cursor"></span>
-</div>
+                        <a
+                            href="#contact"
+                            class="inline-flex items-center justify-center rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-600 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:border-slate-700 dark:text-slate-200 dark:hover:border-indigo-400 dark:hover:text-indigo-400 dark:focus:ring-offset-slate-950"
+                        >
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
 
-<div class="terminal">
+                    <div class="shrink-0">
+                        <img
+                            src="images/profile.jpg"
+                            alt="Joefel M. Lato"
+                            class="h-36 w-36 rounded-full object-cover border-4 border-white shadow-xl ring-2 ring-indigo-500/20 dark:border-slate-900 sm:h-44 sm:w-44"
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<div class="terminal-bar">
-<div class="dots">
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-</div>
-</div>
+        <!-- About -->
+        <section id="about" class="scroll-mt-24 border-t border-slate-200 py-20 dark:border-slate-800 sm:py-24">
+            <div class="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[280px_1fr] md:items-center lg:px-8">
+                <div class="mx-auto w-full max-w-[280px]">
+                    <div class="aspect-square overflow-hidden rounded-2xl bg-slate-100 ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+                        <img
+                            src="images/profile.jpg"
+                            alt="Joefel M. Lato"
+                            class="h-full w-full object-cover"
+                        >
+                    </div>
+                </div>
 
-<div class="terminal-body">
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
+                        About Me
+                    </p>
 
-<div>
-<span class="prompt">root@joefel:~$</span>
-<span class="command"> whoami</span>
-</div>
+                    <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                        Building for the web with purpose.
+                    </h2>
 
-<div class="output">
-JOEFEL, M. LATO — Developer & Technology Explorer
-</div>
+                    <p class="mt-6 max-w-2xl leading-8 text-slate-600 dark:text-slate-400">
+                        I'm Joefel M. Lato, a Web Developer focused on creating practical,
+                        responsive, and modern digital experiences. I enjoy turning ideas into
+                        clean interfaces, useful web applications, and reliable solutions that
+                        work across devices.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-<div>
-<span class="prompt">root@joefel:~$</span>
-<span class="command"> status</span>
-</div>
+        <!-- Skills -->
+        <section id="skills" class="scroll-mt-24 bg-slate-50 py-20 dark:bg-slate-900/50 sm:py-24">
+            <div class="mx-auto max-w-6xl px-5 lg:px-8">
+                <div class="max-w-2xl">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
+                        Skills
+                    </p>
 
-<div class="output">
-[ONLINE] Coding systems...
-[ONLINE] Building projects...
-[ONLINE] Learning technology...
-</div>
+                    <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                        Tools I work with
+                    </h2>
+                </div>
 
-</div>
-</div>
+                <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
+                        HTML5
+                    </span>
 
-<div class="buttons">
-<a class="btn" href="#projects">ENTER PROJECTS</a>
-<a class="btn" href="#contact">CONTACT ME</a>
-</div>
+                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
+                        CSS3
+                    </span>
 
-</div>
+                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
+                        JavaScript
+                    </span>
+
+                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
+                        Tailwind CSS
+                    </span>
+
+                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
+                        Git
+                    </span>
+
+                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
+                        GitHub
+                    </span>
+
+                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
+                        Responsive Design
+                    </span>
+
+                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
+                        UI Development
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+<section id="projects" class="scroll-mt-24 py-20 sm:py-24">
+    <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="max-w-2xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
+                Projects
+            </p>
+
+            <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                Things I've built
+            </h2>
+
+            <p class="mt-4 leading-7 text-slate-600 dark:text-slate-400">
+                A selection of real-world projects I've designed, developed,
+                and continue to improve.
+            </p>
+        </div>
+
+        <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+            <!-- Prometheus Market -->
+            <article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+
+                <div class="relative aspect-video overflow-hidden bg-slate-950">
+                    <img
+                        src="https://placehold.co/1200x675/070714/ffcc00?text=Prometheus+Market"
+                        alt="Prometheus Market e-commerce platform"
+                        loading="lazy"
+                        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    >
+
+                    <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-800 shadow-sm backdrop-blur dark:bg-slate-950/90 dark:text-white">
+                        E-Commerce
+                    </span>
+                </div>
+
+                <div class="flex flex-1 flex-col p-6">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+                        Prometheus Market
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                        A full-stack e-commerce platform with product management,
+                        shopping cart, checkout, customer accounts, inventory,
+                        order management, analytics, and business intelligence.
+                    </p>
+
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">HTML</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">JavaScript</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Flask</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">SQLite</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Tailwind</span>
+                    </div>
+
+                    <div class="mt-auto flex gap-5 pt-7">
+                        <span class="inline-flex w-fit items-center rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700 dark:bg-amber-950 dark:text-amber-300">
+                            In Development
+                        </span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Miguel Lechon -->
+            <article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+
+                <div class="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
+                    <img
+                        src="https://placehold.co/1200x675/111827/ffffff?text=Miguel+Lechon"
+                        alt="Miguel Lechon business website"
+                        loading="lazy"
+                        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    >
+
+                    <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-800 shadow-sm backdrop-blur dark:bg-slate-950/90 dark:text-white">
+                        Business Website
+                    </span>
+                </div>
+
+                <div class="flex flex-1 flex-col p-6">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+                        Miguel Lechon
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                        A mobile-first business website for a local lechon brand,
+                        featuring product information, size-based pricing,
+                        ordering, contact details, and a responsive customer experience.
+                    </p>
+
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">HTML5</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">CSS</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">JavaScript</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Flask</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Responsive Design</span>
+                    </div>
+
+                    <div class="mt-auto flex gap-5 pt-7">
+                        <a href="https://github.com/joefellato215-dev/miguel-lechon" target="_blank" rel="noopener noreferrer"
+                           class="text-sm font-semibold text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">
+                            View Project ↗
+                        </a>
+
+                        <a href="https://github.com/joefellato215-dev/miguel-lechon" target="_blank" rel="noopener noreferrer"
+                           class="text-sm font-semibold text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">
+                            GitHub ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Oculus AI -->
+            <article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+
+                <div class="relative aspect-video overflow-hidden bg-slate-950">
+                    <img
+                        src="https://placehold.co/1200x675/020617/818cf8?text=OCULUS+AI"
+                        alt="Oculus AI assistant project"
+                        loading="lazy"
+                        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    >
+
+                    <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-800 shadow-sm backdrop-blur dark:bg-slate-950/90 dark:text-white">
+                        AI Project
+                    </span>
+                </div>
+
+                <div class="flex flex-1 flex-col p-6">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+                        Oculus AI
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                        A personal AI assistant project exploring voice interaction,
+                        automation, intelligent tools, and web-based control through
+                        a Python and Flask application.
+                    </p>
+
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Python</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Flask</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">JavaScript</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">AI</span>
+                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Automation</span>
+                    </div>
+
+                    <div class="mt-auto flex gap-5 pt-7">
+                        <span class="inline-flex w-fit items-center rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700 dark:bg-amber-950 dark:text-amber-300">
+                            In Development
+                        </span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
 </section>
 
-
-<!-- ================= ABOUT ================= -->
-
-<section id="about">
-
-<h2 class="section-title">ABOUT</h2>
-
-<div class="about">
-
-<p>
-Hello. I'm <span class="highlight">JOEFEL, M. LATO</span>,
-a programmer and technology enthusiast interested in
-building software, automation, interactive interfaces,
-AI systems and experimental projects.
-</p>
-
-<br>
-
-<p>
-My goal is simple:
-<span class="highlight">
-learn, build, experiment and improve.
-</span>
-</p>
-
-<br>
-
-<p>
-This portfolio is designed as a cyber-terminal interface
-to represent my interest in programming and technology.
-</p>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<div class="stat-number">∞</div>
-<div class="stat-label">Learning</div>
-</div>
-
-<div class="stat">
-<div class="stat-number">24/7</div>
-<div class="stat-label">Curiosity</div>
-</div>
-
-<div class="stat">
-<div class="stat-number">AI</div>
-<div class="stat-label">Exploration</div>
-</div>
-
-<div class="stat">
-<div class="stat-number">CODE</div>
-<div class="stat-label">Build Mode</div>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= SKILLS ================= -->
-
-<section id="skills">
-
-<h2 class="section-title">SKILLS</h2>
-
-<div class="skills">
-
-<div class="skill">
-<div class="skill-name">
-<span>Python</span>
-<span>90%</span>
-</div>
-
-<div class="bar">
-<div class="progress" style="width:90%"></div>
-</div>
-</div>
-
-
-<div class="skill">
-<div class="skill-name">
-<span>HTML / CSS</span>
-<span>90%</span>
-</div>
-
-<div class="bar">
-<div class="progress" style="width:90%"></div>
-</div>
-</div>
-
-
-<div class="skill">
-<div class="skill-name">
-<span>JavaScript</span>
-<span>75%</span>
-</div>
-
-<div class="bar">
-<div class="progress" style="width:75%"></div>
-</div>
-</div>
-
-
-<div class="skill">
-<div class="skill-name">
-<span>Linux / Termux</span>
-<span>80%</span>
-</div>
-
-<div class="bar">
-<div class="progress" style="width:80%"></div>
-</div>
-</div>
-
-
-<div class="skill">
-<div class="skill-name">
-<span>AI Systems</span>
-<span>70%</span>
-</div>
-
-<div class="bar">
-<div class="progress" style="width:70%"></div>
-</div>
-</div>
-
-
-<div class="skill">
-<div class="skill-name">
-<span>Problem Solving</span>
-<span>85%</span>
-</div>
-
-<div class="bar">
-<div class="progress" style="width:85%"></div>
-</div>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= PROJECTS ================= -->
-
-<section id="projects">
-
-<h2 class="section-title">PROJECTS</h2>
-
-<div class="projects">
-
-<div class="project">
-
-<div class="project-number">
-PROJECT_001
-</div>
-
-<h3>OCULUS AI</h3>
-
-<p>
-An experimental AI assistant architecture
-designed around voice interaction,
-knowledge systems, tools and automation.
-</p>
-
-<a href="#terminal">
-[ ACCESS ]
-</a>
-
-</div>
-
-
-<div class="project">
-
-<div class="project-number">
-PROJECT_002
-</div>
-
-<h3>CYBER PORTFOLIO</h3>
-
-<p>
-A responsive cyber-terminal portfolio
-with animations, matrix effects,
-interactive commands and futuristic UI.
-</p>
-
-<a href="#terminal">
-[ ACCESS ]
-</a>
-
-</div>
-
-
-<div class="project">
-
-<div class="project-number">
-PROJECT_003
-</div>
-
-<h3>PYTHON SYSTEMS</h3>
-
-<p>
-Experimental Python applications including
-automation tools, utilities, games and
-interactive terminal systems.
-</p>
-
-<a href="#terminal">
-[ ACCESS ]
-</a>
-
-</div>
-
-
-<div class="project">
-
-<div class="project-number">
-PROJECT_004
-</div>
-
-<h3>ANDROID LAB</h3>
-
-<p>
-Mobile development experiments created
-directly from an Android environment
-using Termux and web technologies.
-</p>
-
-<a href="#terminal">
-[ ACCESS ]
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= TERMINAL ================= -->
-
-<section id="terminal">
-
-<h2 class="section-title">COMMAND CENTER</h2>
-
-<div class="command-box">
-
-<div class="command-output" id="output">
-
-<div>
-<span class="prompt">system@joefel:~$</span>
-boot
-</div>
-
-<div>
-Initializing command interface...
-</div>
-
-<div>
-Type <span class="highlight">help</span>
-to see available commands.
-</div>
-
-</div>
-
-<div class="command-input">
-
-<span>&gt;</span>
-
-<input
-id="command"
-type="text"
-placeholder="type a command..."
-autocomplete="off">
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= CONTACT ================= -->
-
-<section id="contact" class="contact">
-
-<h2 class="section-title">CONTACT</h2>
-
-<p>
-Want to connect, collaborate or discuss a project?
-</p>
-
-<div class="buttons" style="justify-content:center">
-
-<a class="btn"
-href="mailto:your@email.com">
-joefellato215@gmail.com
-</a>
-
-<a class="btn"
-href="#projects">
-Oculus Artificial Intelligence
-</a>
-
-</div>
-
-</section>
-
-
-<footer>
-
-© 2026 JOEFEL // SYSTEM ONLINE
-
-</footer>
-
-
-<!-- ================= JAVASCRIPT ================= -->
-
-<script>
-
-/* ================= MATRIX ================= */
-
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
-resizeCanvas();
-
-window.addEventListener("resize", resizeCanvas);
-
-const chars =
-"01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@#$%&";
-
-const fontSize = 14;
-
-let columns = Math.floor(window.innerWidth / fontSize);
-
-let drops = Array(columns).fill(1);
-
-function matrix() {
-
-    ctx.fillStyle = "rgba(0, 5, 3, 0.08)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.font = fontSize + "px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-
-        const text =
-            chars[Math.floor(Math.random() * chars.length)];
-
-        ctx.fillStyle = "#00ff88";
-
-        ctx.fillText(
-            text,
-            i * fontSize,
-            drops[i] * fontSize
-        );
+<!-- Contact -->
+        <section id="contact" class="scroll-mt-24 border-t border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/50 sm:py-24">
+            <div class="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-2 lg:px-8">
+
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
+                        Contact
+                    </p>
+
+                    <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                        Let's work together.
+                    </h2>
+
+                    <p class="mt-5 max-w-lg leading-7 text-slate-600 dark:text-slate-400">
+                        Have a project, idea, or opportunity? Send me a message and I'll get back to you.
+                    </p>
+
+                    <div class="mt-8 flex flex-wrap gap-5">
+                        <a
+                            href="https://github.com/joefellato215-dev"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Joefel's GitHub profile"
+                            class="text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
+                        >
+                            GitHub
+                        </a>
+
+                        <a
+                            href="https://www.messenger.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Joefel on Messenger"
+                            class="text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
+                        >
+                            Messenger
+                        </a>
+
+                        <a
+                            href="mailto:YOUR-EMAIL@example.com"
+                            aria-label="Email Joefel"
+                            class="text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
+                        >
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Static form -->
+                <form
+                    action="YOUR-FORM-ENDPOINT"
+                    method="POST"
+                    class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950 sm:p-8"
+                >
+                    <div>
+                        <label for="name" class="text-sm font-semibold">Name</label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            autocomplete="name"
+                            required
+                            class="mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                            placeholder="Your name"
+                        >
+                    </div>
+
+                    <div class="mt-5">
+                        <label for="email" class="text-sm font-semibold">Email</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            autocomplete="email"
+                            required
+                            class="mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                            placeholder="you@example.com"
+                        >
+                    </div>
+
+                    <div class="mt-5">
+                        <label for="message" class="text-sm font-semibold">Message</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                            required
+                            class="mt-2 w-full resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                            placeholder="Tell me about your project..."
+                        ></textarea>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="mt-6 w-full rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950"
+                    >
+                        Send Message
+                    </button>
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 py-8 dark:border-slate-800">
+        <div class="mx-auto flex max-w-6xl flex-col gap-3 px-5 text-center text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:text-left lg:px-8">
+            <p>
+                © <span id="current-year"></span> Joefel M. Lato. All rights reserved.
+            </p>
+
+            <a
+                href="#home"
+                class="font-medium transition hover:text-indigo-600 dark:hover:text-indigo-400"
+            >
+                Back to top ↑
+            </a>
+        </div>
+    </footer>
+
+    <!-- Minimal JavaScript -->
+    <script>
+        const html = document.documentElement;
+
+        // Dark mode
+        const themeButtons = [
+            document.getElementById("theme-toggle"),
+            document.getElementById("mobile-theme-toggle")
+        ];
+
+        const savedTheme = localStorage.getItem("theme");
 
         if (
-            drops[i] * fontSize > canvas.height &&
-            Math.random() > 0.975
+            savedTheme === "dark" ||
+            (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
         ) {
-            drops[i] = 0;
+            html.classList.add("dark");
         }
 
-        drops[i]++;
-    }
-}
+        function updateThemeButtons() {
+            const isDark = html.classList.contains("dark");
 
-setInterval(matrix, 40);
+            themeButtons.forEach((button) => {
+                if (button) {
+                    button.setAttribute("aria-pressed", String(isDark));
+                    button.setAttribute(
+                        "aria-label",
+                        isDark ? "Switch to light mode" : "Switch to dark mode"
+                    );
+                }
+            });
+        }
 
+        function toggleTheme() {
+            html.classList.toggle("dark");
 
-/* ================= COMMAND TERMINAL ================= */
+            const isDark = html.classList.contains("dark");
+            localStorage.setItem("theme", isDark ? "dark" : "light");
 
-const input =
-document.getElementById("command");
+            updateThemeButtons();
+        }
 
-const output =
-document.getElementById("output");
+        themeButtons.forEach((button) => {
+            if (button) {
+                button.addEventListener("click", toggleTheme);
+            }
+        });
 
-input.addEventListener("keydown", function(event) {
-
-    if (event.key !== "Enter") return;
-
-    const command =
-        input.value.trim().toLowerCase();
-
-    if (!command) return;
-
-    const line =
-        document.createElement("div");
-
-    line.innerHTML =
-        `<span class="prompt">user@joefel:~$</span> ${command}`;
-
-    output.appendChild(line);
-
-    let response = "";
-
-    switch(command) {
-
-        case "help":
-
-            response =
-            "Available: about, skills, projects, status, clear, matrix";
-
-            break;
-
-        case "about":
-
-            response =
-            "JOEFEL // Developer and technology enthusiast.";
-
-            break;
-
-        case "skills":
-
-            response =
-            "Python | HTML | CSS | JavaScript | Termux | AI";
-
-            break;
-
-        case "projects":
-
-            response =
-            "OCULUS AI | Cyber Portfolio | Python Systems | Android Lab";
-
-            break;
-
-        case "status":
-
-            response =
-            "SYSTEM ONLINE // ALL PORTFOLIO SYSTEMS OPERATIONAL";
-
-            break;
-
-        case "matrix":
-
-            response =
-            "MATRIX DISPLAY ACTIVE";
-
-            break;
-
-        case "clear":
-
-            output.innerHTML = "";
-            input.value = "";
-            return;
-
-        default:
-
-            response =
-            `Command not found: ${command}. Type "help".`;
-    }
-
-    const result =
-        document.createElement("div");
-
-    result.className = "output";
-
-    result.textContent = response;
-
-    output.appendChild(result);
-
-    output.scrollTop =
-        output.scrollHeight;
-
-    input.value = "";
-
-});
+        updateThemeButtons();
 
 
-/* ================= TYPING TITLE ================= */
+        // Mobile menu
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
 
-const subtitle =
-document.querySelector(".subtitle");
+        menuToggle.addEventListener("click", () => {
+            const isOpen = !mobileMenu.classList.contains("hidden");
 
-let originalText =
-"> PROGRAMMER / DEVELOPER / CYBER TECH ENTHUSIAST";
+            mobileMenu.classList.toggle("hidden");
+            menuToggle.setAttribute("aria-expanded", String(!isOpen));
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Open navigation menu" : "Close navigation menu"
+            );
+        });
 
-let index = 0;
+        document.querySelectorAll("#mobile-menu a").forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open navigation menu");
+            });
+        });
 
-function typing() {
 
-    if (index < originalText.length) {
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+            link.addEventListener("click", (event) => {
+                const targetId = link.getAttribute("href");
 
-        subtitle.innerHTML =
-            originalText.substring(0, index + 1)
-            + '<span class="cursor"></span>';
+                if (targetId === "#") return;
 
-        index++;
+                const target = document.querySelector(targetId);
 
-        setTimeout(typing, 45);
+                if (target) {
+                    event.preventDefault();
 
-    }
-}
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            });
+        });
 
-setTimeout(typing, 800);
 
-</script>
+        // Current year
+        document.getElementById("current-year").textContent =
+            new Date().getFullYear();
+    </script>
 
 </body>
 </html>
