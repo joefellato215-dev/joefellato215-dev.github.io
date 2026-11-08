@@ -448,13 +448,13 @@
 
                         <a
                             href="https://www.facebook.com/share/14zHqicu6ij/"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Facebook.com"
-    class="text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
->
-    Facebook.com
-</a>
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Facebook.com"
+                            class="text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
+                        >
+                            Facebook.com
+                        </a>
 
                         <a
                             href="mailto:joefellato215@gmail.com"
@@ -646,36 +646,96 @@
     </script>
 
 <script>
-(() => {
-  const track = document.getElementById('about-carousel-track');
-  const carousel = document.getElementById('about-photo-carousel');
-  const prev = document.getElementById('about-carousel-prev');
-  const next = document.getElementById('about-carousel-next');
-  const dots = [...document.querySelectorAll('.about-carousel-dot')];
-  if (!track || !carousel || !prev || !next || !dots.length) return;
-  let index = 0, timer, startX = 0;
-  const total = dots.length;
-  function render() {
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('bg-white', i === index);
-      dot.classList.toggle('bg-white/50', i !== index);
-    });
-  }
-  function go(i) { index = (i + total) % total; render(); }
-  function restart() { clearInterval(timer); timer = setInterval(() => go(index + 1), 5000); }
-  prev.addEventListener('click', () => { go(index - 1); restart(); });
-  next.addEventListener('click', () => { go(index + 1); restart(); });
-  dots.forEach((dot, i) => dot.addEventListener('click', () => { go(i); restart(); }));
-  carousel.addEventListener('touchstart', e => { startX = e.changedTouches[0].clientX; }, {passive:true});
-  carousel.addEventListener('touchend', e => {
-    const distance = e.changedTouches[0].clientX - startX;
-    if (Math.abs(distance) > 50) { go(index + (distance < 0 ? 1 : -1)); restart(); }
-  }, {passive:true});
-  carousel.addEventListener('mouseenter', () => clearInterval(timer));
-  carousel.addEventListener('mouseleave', restart);
-  render(); restart();
-})();
-</script>
+        // About photo carousel
+        (() => {
+            const track = document.getElementById("about-carousel-track");
+            const carousel = document.getElementById("about-photo-carousel");
+            const prev = document.getElementById("about-carousel-prev");
+            const next = document.getElementById("about-carousel-next");
+            const dots = [...document.querySelectorAll(".about-carousel-dot")];
+
+            if (!track || !carousel || !prev || !next || !dots.length) {
+                return;
+            }
+
+            let index = 0;
+            let timer;
+            let startX = 0;
+
+            const total = dots.length;
+
+            function render() {
+                track.style.transform = `translateX(-${index * 100}%)`;
+
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("bg-white", i === index);
+                    dot.classList.toggle("bg-white/50", i !== index);
+                });
+            }
+
+            function goToSlide(newIndex) {
+                index = (newIndex + total) % total;
+                render();
+            }
+
+            function restartAutoPlay() {
+                clearInterval(timer);
+
+                timer = setInterval(() => {
+                    goToSlide(index + 1);
+                }, 5000);
+            }
+
+            prev.addEventListener("click", () => {
+                goToSlide(index - 1);
+                restartAutoPlay();
+            });
+
+            next.addEventListener("click", () => {
+                goToSlide(index + 1);
+                restartAutoPlay();
+            });
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener("click", () => {
+                    goToSlide(i);
+                    restartAutoPlay();
+                });
+            });
+
+            carousel.addEventListener(
+                "touchstart",
+                (event) => {
+                    startX = event.changedTouches[0].clientX;
+                },
+                { passive: true }
+            );
+
+            carousel.addEventListener(
+                "touchend",
+                (event) => {
+                    const distance =
+                        event.changedTouches[0].clientX - startX;
+
+                    if (Math.abs(distance) > 50) {
+                        goToSlide(
+                            index + (distance < 0 ? 1 : -1)
+                        );
+                        restartAutoPlay();
+                    }
+                },
+                { passive: true }
+            );
+
+            carousel.addEventListener("mouseenter", () => {
+                clearInterval(timer);
+            });
+
+            carousel.addEventListener("mouseleave", restartAutoPlay);
+
+            render();
+            restartAutoPlay();
+        })();
+    </script>
 </body>
 </html>
