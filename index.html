@@ -156,11 +156,22 @@
                 </div>
 
                     <div class="shrink-0">
-                        <img
-                            src="images/profile.jpg"
-                            alt="Joefel M. Lato"
-                            class="h-36 w-36 rounded-full object-cover border-4 border-white shadow-xl ring-2 ring-indigo-500/20 dark:border-slate-900 sm:h-44 sm:w-44"
-                        >
+                        <div id="about-photo-carousel" class="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <div id="about-carousel-track" class="flex transition-transform duration-500 ease-out">
+        <div class="min-w-full aspect-square"><img src="images/profile.jpg" alt="Joefel M. Lato" class="h-full w-full object-cover"></div>
+        <div class="min-w-full aspect-square"><img src="images/joefel-photo-1.jpg" alt="Joefel M. Lato outdoors" class="h-full w-full object-cover"></div>
+        <div class="min-w-full aspect-square"><img src="images/joefel-photo-2.jpg" alt="Joefel M. Lato outdoors wearing a blue shirt" class="h-full w-full object-cover"></div>
+        <div class="min-w-full aspect-square bg-slate-950"><img src="images/prometheus-seal.png" alt="Prometheus emblem" class="h-full w-full object-contain p-6"></div>
+    </div>
+    <button type="button" id="about-carousel-prev" aria-label="Previous photo" class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/60 px-3 py-2 text-xl text-white backdrop-blur hover:bg-black/80">&#10094;</button>
+    <button type="button" id="about-carousel-next" aria-label="Next photo" class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/60 px-3 py-2 text-xl text-white backdrop-blur hover:bg-black/80">&#10095;</button>
+    <div class="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2" aria-label="Choose photo">
+        <button type="button" aria-label="Show photo 1" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white"></button>
+        <button type="button" aria-label="Show photo 2" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white/50"></button>
+        <button type="button" aria-label="Show photo 3" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white/50"></button>
+        <button type="button" aria-label="Show photo 4" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white/50"></button>
+    </div>
+</div>
                     </div>
                 </div>
             </div>
@@ -634,5 +645,37 @@
             new Date().getFullYear();
     </script>
 
+<script>
+(() => {
+  const track = document.getElementById('about-carousel-track');
+  const carousel = document.getElementById('about-photo-carousel');
+  const prev = document.getElementById('about-carousel-prev');
+  const next = document.getElementById('about-carousel-next');
+  const dots = [...document.querySelectorAll('.about-carousel-dot')];
+  if (!track || !carousel || !prev || !next || !dots.length) return;
+  let index = 0, timer, startX = 0;
+  const total = dots.length;
+  function render() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('bg-white', i === index);
+      dot.classList.toggle('bg-white/50', i !== index);
+    });
+  }
+  function go(i) { index = (i + total) % total; render(); }
+  function restart() { clearInterval(timer); timer = setInterval(() => go(index + 1), 5000); }
+  prev.addEventListener('click', () => { go(index - 1); restart(); });
+  next.addEventListener('click', () => { go(index + 1); restart(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { go(i); restart(); }));
+  carousel.addEventListener('touchstart', e => { startX = e.changedTouches[0].clientX; }, {passive:true});
+  carousel.addEventListener('touchend', e => {
+    const distance = e.changedTouches[0].clientX - startX;
+    if (Math.abs(distance) > 50) { go(index + (distance < 0 ? 1 : -1)); restart(); }
+  }, {passive:true});
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', restart);
+  render(); restart();
+})();
+</script>
 </body>
 </html>
