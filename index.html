@@ -118,442 +118,915 @@
     <main>
 
         <!-- Hero -->
-        <section id="home" class="scroll-mt-24">
-            <div class="mx-auto flex min-h-[calc(100vh-73px)] max-w-6xl items-center px-5 py-20 lg:px-8">
-                <div class="flex max-w-4xl flex-col-reverse items-center gap-10 md:flex-row md:items-center">
+        <section id="home" class="relative scroll-mt-24 overflow-hidden">
+            <!-- Decorative background -->
+            <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+                <div class="absolute left-1/2 top-[-12rem] h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-indigo-500/10 blur-3xl dark:bg-indigo-500/15"></div>
+                <div class="absolute -right-32 top-1/3 h-72 w-72 rounded-full bg-violet-500/10 blur-3xl dark:bg-violet-500/10"></div>
+                <div class="absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-indigo-400/10 blur-3xl dark:bg-indigo-400/10"></div>
+                <div
+                    class="absolute inset-0 opacity-[0.035] dark:opacity-[0.045]"
+                    style="background-image: linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px); background-size: 48px 48px;"
+                ></div>
+            </div>
+
+            <div class="mx-auto flex min-h-[calc(100vh-73px)] max-w-7xl items-center px-5 py-16 sm:py-20 lg:px-8 lg:py-24">
+                <div class="grid w-full items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+
+                    <!-- Hero content -->
                     <div class="max-w-3xl">
-                        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
+                        <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-indigo-200/80 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-indigo-700 shadow-sm backdrop-blur dark:border-indigo-900/70 dark:bg-slate-900/70 dark:text-indigo-300">
+                            <span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
+                            Programmer / Web Developer
+                        </div>
+
+                        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">
                             Hello, I'm
                         </p>
 
-                        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-                            Joefel M. Lato
+                        <h1 class="text-5xl font-black tracking-[-0.045em] text-slate-950 sm:text-6xl md:text-7xl lg:text-8xl dark:text-white">
+                            Joefel
+                            <span class="block bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-500 bg-clip-text text-transparent">
+                                M. Lato
+                            </span>
                         </h1>
 
-                        <h2 class="mt-4 text-2xl font-semibold text-slate-600 dark:text-slate-300 sm:text-3xl">
-                            Programmer / Web Developer
-                        </h2>
-
-                        <p class="mt-6 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-400 sm:text-lg">
-                            I build clean, responsive, and user-focused websites with modern web technologies.
+                        <p class="mt-7 max-w-2xl text-xl font-medium leading-8 text-slate-700 sm:text-2xl sm:leading-9 dark:text-slate-300">
+                            I build practical digital experiences with
+                            <span class="text-indigo-600 dark:text-indigo-400">code, design, and purpose.</span>
                         </p>
 
-                        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                        <a
-                            href="#projects"
-                            class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950"
-                        >
-                            View Projects
-                        </a>
+                        <p class="mt-5 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-400 sm:text-lg">
+                            From responsive websites to full-stack applications, I turn ideas into clean,
+                            functional, and user-focused digital products.
+                        </p>
 
-                        <a
-                            href="#contact"
-                            class="inline-flex items-center justify-center rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-600 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:border-slate-700 dark:text-slate-200 dark:hover:border-indigo-400 dark:hover:text-indigo-400 dark:focus:ring-offset-slate-950"
-                        >
-                            Contact Me
-                        </a>
+                        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+                            <a
+                                href="#projects"
+                                class="group inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-indigo-600/20 transition duration-300 hover:-translate-y-0.5 hover:bg-indigo-700 hover:shadow-xl hover:shadow-indigo-600/25 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950"
+                            >
+                                View My Work
+                                <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                            </a>
+
+                            <a
+                                href="#contact"
+                                class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white/70 px-6 py-3.5 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-indigo-400 hover:text-indigo-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-indigo-500 dark:hover:text-indigo-400 dark:focus:ring-offset-slate-950"
+                            >
+                                Let's Connect
+                            </a>
+                        </div>
+
+                        <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-medium uppercase tracking-[0.16em] text-slate-500 dark:text-slate-500">
+                            <span class="flex items-center gap-2">
+                                <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                                Building with purpose
+                            </span>
+                            <span class="hidden h-4 w-px bg-slate-300 sm:block dark:bg-slate-700"></span>
+                            <span>Web · E-commerce · AI</span>
+                        </div>
                     </div>
-                </div>
 
-                    <div class="shrink-0">
-                        <div id="about-photo-carousel" class="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-    <div id="about-carousel-track" class="flex transition-transform duration-500 ease-out">
-        <div class="min-w-full aspect-square"><img src="images/profile.jpg" alt="Joefel M. Lato" class="h-full w-full object-cover"></div>
-        <div class="min-w-full aspect-square"><img src="images/joefel-photo-1.jpg" alt="Joefel M. Lato outdoors" class="h-full w-full object-cover"></div>
-        <div class="min-w-full aspect-square"><img src="images/joefel-photo-2.jpg" alt="Joefel M. Lato outdoors wearing a blue shirt" class="h-full w-full object-cover"></div>
-        <div class="min-w-full aspect-square bg-slate-950"><img src="images/prometheus-seal.png" alt="Prometheus emblem" class="h-full w-full object-contain p-6"></div>
-    </div>
-    <button type="button" id="about-carousel-prev" aria-label="Previous photo" class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/60 px-3 py-2 text-xl text-white backdrop-blur hover:bg-black/80">&#10094;</button>
-    <button type="button" id="about-carousel-next" aria-label="Next photo" class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/60 px-3 py-2 text-xl text-white backdrop-blur hover:bg-black/80">&#10095;</button>
-    <div class="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2" aria-label="Choose photo">
-        <button type="button" aria-label="Show photo 1" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white"></button>
-        <button type="button" aria-label="Show photo 2" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white/50"></button>
-        <button type="button" aria-label="Show photo 3" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white/50"></button>
-        <button type="button" aria-label="Show photo 4" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white/50"></button>
-    </div>
-</div>
+                    <!-- Hero visual -->
+                    <div class="relative mx-auto w-full max-w-xl">
+                        <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-indigo-500/20 via-transparent to-violet-500/20 blur-2xl"></div>
+
+                        <div class="relative rounded-[2rem] border border-white/70 bg-white/60 p-2 shadow-2xl shadow-slate-900/10 backdrop-blur-xl dark:border-slate-700/70 dark:bg-slate-900/60 dark:shadow-black/30">
+                            <div class="overflow-hidden rounded-[1.5rem]">
+                                <div id="about-photo-carousel" class="relative mx-auto w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
+                                    <div id="about-carousel-track" class="flex transition-transform duration-500 ease-out">
+                                        <div class="min-w-full aspect-square">
+                                            <img src="images/profile.jpg" alt="Joefel M. Lato" class="h-full w-full object-cover">
+                                        </div>
+                                        <div class="min-w-full aspect-square">
+                                            <img src="images/joefel-photo-1.jpg" alt="Joefel M. Lato outdoors" class="h-full w-full object-cover">
+                                        </div>
+                                        <div class="min-w-full aspect-square">
+                                            <img src="images/joefel-photo-2.jpg" alt="Joefel M. Lato outdoors wearing a blue shirt" class="h-full w-full object-cover">
+                                        </div>
+                                        <div class="min-w-full aspect-square bg-slate-950">
+                                            <img src="images/prometheus-seal.png" alt="Prometheus emblem" class="h-full w-full object-contain p-6">
+                                        </div>
+                                    </div>
+
+                                    <div class="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/40 to-transparent"></div>
+
+                                    <button type="button" id="about-carousel-prev" aria-label="Previous photo" class="absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-black/50 px-3 py-2 text-xl text-white shadow-lg backdrop-blur transition hover:bg-black/70">&#10094;</button>
+
+                                    <button type="button" id="about-carousel-next" aria-label="Next photo" class="absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-black/50 px-3 py-2 text-xl text-white shadow-lg backdrop-blur transition hover:bg-black/70">&#10095;</button>
+
+                                    <div class="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2" aria-label="Choose photo">
+                                        <button type="button" aria-label="Show photo 1" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white shadow"></button>
+                                        <button type="button" aria-label="Show photo 2" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white/50"></button>
+                                        <button type="button" aria-label="Show photo 3" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white/50"></button>
+                                        <button type="button" aria-label="Show photo 4" class="about-carousel-dot h-2.5 w-2.5 rounded-full bg-white/50"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="absolute -bottom-5 -left-4 hidden rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 shadow-lg backdrop-blur sm:block dark:border-slate-700 dark:bg-slate-900/90">
+                            <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Focus</p>
+                            <p class="mt-1 text-sm font-bold text-slate-900 dark:text-white">Build · Learn · Improve</p>
+                        </div>
+
+                        <div class="absolute -right-3 -top-5 hidden rounded-2xl border border-indigo-100 bg-white/90 px-4 py-3 shadow-lg backdrop-blur sm:block dark:border-indigo-900 dark:bg-slate-900/90">
+                            <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">Based on</p>
+                            <p class="mt-1 text-sm font-bold text-slate-900 dark:text-white">Purpose & Craft</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About -->
         <!-- Personal Philosophy -->
-        <section
-            id="philosophy"
-            class="border-y border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-950"
-        >
-            <div class="mx-auto max-w-4xl px-6 text-center">
-                <p class="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
-                    Personal Philosophy
-                </p>
+    <section id="philosophy" class="relative py-20 sm:py-28 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-indigo-500/[0.03] via-transparent to-transparent dark:from-indigo-500/[0.06]"></div>
 
-                <blockquote class="text-xl font-medium leading-relaxed text-slate-800 sm:text-2xl lg:text-3xl dark:text-slate-100">
-                    “I did not choose to be here. But now that I am, I will choose what my life becomes.
-                    I did not ask for this journey, but I decide where my steps lead.
-                    I am not here by permission; I am here by purpose.
-                    And through it all, let me be led by Your counsel.”
-                </blockquote>
-
-                <div class="mx-auto mt-8 h-px w-16 bg-indigo-600 dark:bg-indigo-400"></div>
-            </div>
-        </section>
-
-        <section id="about" class="scroll-mt-24 border-t border-slate-200 py-20 dark:border-slate-800 sm:py-24">
-            <div class="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[280px_1fr] md:items-center lg:px-8">
-                <div class="mx-auto w-full max-w-[280px]">
-                    <div class="aspect-square overflow-hidden rounded-2xl bg-slate-100 ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
-                        <img
-                            src="images/profile.jpg"
-                            alt="Joefel M. Lato"
-                            class="h-full w-full object-cover"
-                        >
-                    </div>
-                </div>
-
-                <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
-                        About Me
-                    </p>
-
-                    <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                        Building for the web with purpose.
-                    </h2>
-
-                    <p class="mt-6 max-w-2xl leading-8 text-slate-600 dark:text-slate-400">
-                        I'm Joefel M. Lato, a Programmer / Web Developer focused on creating practical,
-                        responsive, and modern digital experiences. I enjoy turning ideas into
-                        clean interfaces, useful web applications, and reliable solutions that
-                        work across devices.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills -->
-        <section id="skills" class="scroll-mt-24 bg-slate-50 py-20 dark:bg-slate-900/50 sm:py-24">
-            <div class="mx-auto max-w-6xl px-5 lg:px-8">
-                <div class="max-w-2xl">
-                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
-                        Skills
-                    </p>
-
-                    <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                        Tools I work with
-                    </h2>
-                </div>
-
-                <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
-                        HTML5
-                    </span>
-
-                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
-                        CSS3
-                    </span>
-
-                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
-                        JavaScript
-                    </span>
-
-                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
-                        Tailwind CSS
-                    </span>
-
-                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
-                        Git
-                    </span>
-
-                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
-                        GitHub
-                    </span>
-
-                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
-                        Figma
-                    </span>
-
-                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
-                        Responsive Design
-                    </span>
-
-                    <span class="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-indigo-700">
-                        UI Development
-                    </span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects -->
-<section id="projects" class="scroll-mt-24 py-20 sm:py-24">
-    <div class="mx-auto max-w-6xl px-5 lg:px-8">
-
-        <div class="max-w-2xl">
-            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
-                Projects
-            </p>
-
-            <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-                Things I've built
-            </h2>
-
-            <p class="mt-4 leading-7 text-slate-600 dark:text-slate-400">
-                A selection of real-world projects I've designed, developed,
-                and continue to improve.
-            </p>
+      <div class="relative max-w-4xl mx-auto px-6 sm:px-8 text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-indigo-500/15 bg-indigo-500/[0.06] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-500 dark:border-indigo-400/15 dark:bg-indigo-400/[0.06] dark:text-indigo-300">
+          Personal Philosophy
         </div>
 
-        <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <blockquote class="mt-8 text-xl sm:text-2xl md:text-3xl leading-relaxed font-medium tracking-tight text-gray-900 dark:text-white">
+          “I did not choose to be here. But now that I am, I will choose what my life becomes.
+          I did not ask for this journey, but I decide where my steps lead.
+          I am not here by permission; I am here by purpose.
+          And through it all, let me be led by Your counsel.”
+        </blockquote>
+      </div>
+    </section>
 
-            <!-- Prometheus Market -->
-            <article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+    <!-- About -->
+<section id="about" class="relative overflow-hidden border-t border-gray-200/70 bg-white py-24 dark:border-white/10 dark:bg-[#070714] sm:py-28">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute -left-32 top-20 h-72 w-72 rounded-full bg-indigo-500/10 blur-3xl"></div>
+    <div class="absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-violet-500/10 blur-3xl"></div>
+  </div>
 
-                <div class="relative aspect-video overflow-hidden bg-slate-950">
-                    <img
-                        src="https://placehold.co/1200x675/070714/ffcc00?text=Prometheus+Market"
-                        alt="Prometheus Market e-commerce platform"
-                        loading="lazy"
-                        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                    >
+  <div class="relative mx-auto max-w-6xl px-6 lg:px-8">
 
-                    <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-800 shadow-sm backdrop-blur dark:bg-slate-950/90 dark:text-white">
-                        E-Commerce
-                    </span>
-                </div>
+    <div class="mb-14 max-w-3xl">
+      <p class="mb-4 text-sm font-semibold uppercase tracking-[0.22em] text-indigo-600 dark:text-indigo-400">
+        About Me
+      </p>
 
-                <div class="flex flex-1 flex-col p-6">
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">
-                        Prometheus Market
-                    </h3>
+      <h2 class="text-4xl font-bold tracking-tight text-gray-950 dark:text-white sm:text-5xl">
+        Building for the web
+        <span class="text-indigo-600 dark:text-indigo-400">with purpose.</span>
+      </h2>
 
-                    <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
-                        A full-stack e-commerce platform with product management,
-                        shopping cart, checkout, customer accounts, inventory,
-                        order management, analytics, and business intelligence.
-                    </p>
-
-                    <div class="mt-5 flex flex-wrap gap-2">
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">HTML</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">JavaScript</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Flask</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">SQLite</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Tailwind</span>
-                    </div>
-
-                    <div class="mt-auto flex gap-5 pt-7">
-                        <span class="inline-flex w-fit items-center rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700 dark:bg-amber-950 dark:text-amber-300">
-                            In Development
-                        </span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Miguel Lechon -->
-            <article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-
-                <div class="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
-                    <img
-                        src="https://placehold.co/1200x675/111827/ffffff?text=Miguel+Lechon"
-                        alt="Miguel Lechon business website"
-                        loading="lazy"
-                        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                    >
-
-                    <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-800 shadow-sm backdrop-blur dark:bg-slate-950/90 dark:text-white">
-                        Business Website
-                    </span>
-                </div>
-
-                <div class="flex flex-1 flex-col p-6">
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">
-                        Miguel Lechon
-                    </h3>
-
-                    <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
-                        A mobile-first business website for a local lechon brand,
-                        featuring product information, size-based pricing,
-                        ordering, contact details, and a responsive customer experience.
-                    </p>
-
-                    <div class="mt-5 flex flex-wrap gap-2">
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">HTML5</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">CSS</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">JavaScript</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Flask</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Responsive Design</span>
-                    </div>
-
-                    <div class="mt-auto flex gap-5 pt-7">
-                        <a href="https://github.com/joefellato215-dev/miguel-lechon" target="_blank" rel="noopener noreferrer"
-                           class="text-sm font-semibold text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300">
-                            View Project ↗
-                        </a>
-
-                        <a href="https://github.com/joefellato215-dev/miguel-lechon" target="_blank" rel="noopener noreferrer"
-                           class="text-sm font-semibold text-slate-700 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400">
-                            GitHub ↗
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Oculus AI -->
-            <article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-
-                <div class="relative aspect-video overflow-hidden bg-slate-950">
-                    <img
-                        src="https://placehold.co/1200x675/020617/818cf8?text=OCULUS+AI"
-                        alt="Oculus AI assistant project"
-                        loading="lazy"
-                        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                    >
-
-                    <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-800 shadow-sm backdrop-blur dark:bg-slate-950/90 dark:text-white">
-                        AI Project
-                    </span>
-                </div>
-
-                <div class="flex flex-1 flex-col p-6">
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">
-                        Oculus AI
-                    </h3>
-
-                    <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
-                        A personal AI assistant project exploring voice interaction,
-                        automation, intelligent tools, and web-based control through
-                        a Python and Flask application.
-                    </p>
-
-                    <div class="mt-5 flex flex-wrap gap-2">
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Python</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Flask</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">JavaScript</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">AI</span>
-                        <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Automation</span>
-                    </div>
-
-                    <div class="mt-auto flex gap-5 pt-7">
-                        <span class="inline-flex w-fit items-center rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700 dark:bg-amber-950 dark:text-amber-300">
-                            In Development
-                        </span>
-                    </div>
-                </div>
-            </article>
-
-        </div>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-gray-600 dark:text-gray-400">
+        I'm Joefel M. Lato, a Programmer / Web Developer focused on creating
+        practical, responsive, and modern digital experiences.
+      </p>
     </div>
+
+    <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+
+      <!-- Story -->
+      <div class="rounded-3xl border border-gray-200 bg-gray-50/80 p-8 shadow-sm dark:border-white/10 dark:bg-white/[0.035] sm:p-10">
+        <div class="flex items-center gap-3">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 text-sm font-bold text-white shadow-lg shadow-indigo-600/20">
+            01
+          </span>
+          <div>
+            <p class="text-sm font-semibold text-gray-950 dark:text-white">My approach</p>
+            <p class="text-xs text-gray-500 dark:text-gray-500">Practical over complicated</p>
+          </div>
+        </div>
+
+        <div class="mt-8 space-y-5 text-base leading-8 text-gray-600 dark:text-gray-400">
+          <p>
+            I enjoy turning ideas into clean interfaces, useful web applications,
+            and reliable solutions that work across devices.
+          </p>
+
+          <p>
+            My work sits at the intersection of
+            <span class="font-semibold text-gray-900 dark:text-gray-200">development, design, and problem-solving</span>.
+            I care about how something looks, but I care just as much about how
+            it works.
+          </p>
+
+          <p>
+            From e-commerce platforms and business websites to AI experiments,
+            I build through real projects, hands-on learning, and continuous
+            improvement.
+          </p>
+        </div>
+
+        <div class="mt-9 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-2xl border border-gray-200 bg-white p-4 dark:border-white/10 dark:bg-white/[0.03]">
+            <p class="text-sm font-semibold text-gray-950 dark:text-white">Build</p>
+            <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-500">
+              Turn ideas into working products.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-gray-200 bg-white p-4 dark:border-white/10 dark:bg-white/[0.03]">
+            <p class="text-sm font-semibold text-gray-950 dark:text-white">Learn</p>
+            <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-500">
+              Grow through real development.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-gray-200 bg-white p-4 dark:border-white/10 dark:bg-white/[0.03]">
+            <p class="text-sm font-semibold text-gray-950 dark:text-white">Improve</p>
+            <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-500">
+              Refine what already works.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Focus -->
+      <div class="rounded-3xl border border-gray-200 bg-gray-950 p-8 text-white shadow-xl shadow-gray-900/10 dark:border-white/10 dark:bg-[#0f0f23] sm:p-10">
+        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">
+          What I build
+        </p>
+
+        <div class="mt-8 space-y-6">
+
+          <div class="flex gap-4">
+            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10 text-sm">
+              &lt;/&gt;
+            </span>
+            <div>
+              <h3 class="font-semibold">Web Experiences</h3>
+              <p class="mt-1 text-sm leading-6 text-gray-400">
+                Responsive interfaces designed for real people and real devices.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10 text-sm">
+              ◇
+            </span>
+            <div>
+              <h3 class="font-semibold">Full-Stack Applications</h3>
+              <p class="mt-1 text-sm leading-6 text-gray-400">
+                Practical applications with backend logic, databases, APIs, and workflows.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10 text-sm">
+              AI
+            </span>
+            <div>
+              <h3 class="font-semibold">AI & Automation</h3>
+              <p class="mt-1 text-sm leading-6 text-gray-400">
+                Exploring intelligent tools, assistants, automation, and new ways to build.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10 text-sm">
+              ↗
+            </span>
+            <div>
+              <h3 class="font-semibold">Continuous Improvement</h3>
+              <p class="mt-1 text-sm leading-6 text-gray-400">
+                Every project is an opportunity to learn, refine, and build better.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-10 border-t border-white/10 pt-6">
+          <p class="text-xs uppercase tracking-[0.2em] text-gray-500">
+            Developer mindset
+          </p>
+          <p class="mt-2 text-lg font-medium text-white">
+            Build with purpose. Improve with intention.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
-<!-- Contact -->
-        <section id="contact" class="scroll-mt-24 border-t border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900/50 sm:py-24">
-            <div class="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-2 lg:px-8">
+<!-- Skills -->
+<section id="skills" class="scroll-mt-24 py-24 sm:py-28">
+  <div class="mx-auto max-w-6xl px-6">
 
-                <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
-                        Contact
-                    </p>
+    <!-- Section heading -->
+    <div class="max-w-2xl mb-12 sm:mb-16">
+      <p class="text-sm font-semibold tracking-[0.22em] uppercase text-indigo-500 mb-4">
+        Skills
+      </p>
 
-                    <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                        Let's work together.
-                    </h2>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        How I build.
+      </h2>
 
-                    <p class="mt-5 max-w-lg leading-7 text-slate-600 dark:text-slate-400">
-                        Have a project, idea, or opportunity? Send me a message and I'll get back to you.
-                    </p>
+      <p class="mt-5 text-base sm:text-lg leading-8 text-gray-600 dark:text-gray-400">
+        A practical toolkit for designing, developing, and improving
+        modern digital experiences.
+      </p>
+    </div>
 
-                    <div class="mt-8 flex flex-wrap gap-5">
-                        <a
-                            href="https://github.com/joefellato215-dev"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Joefel's GitHub profile"
-                            class="text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
-                        >
-                            GitHub
-                        </a>
+    <!-- Skill categories -->
+    <div class="grid md:grid-cols-2 gap-5 lg:gap-6">
 
-                        <a
-                            href="https://www.facebook.com/share/14zHqicu6ij/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Facebook.com"
-                            class="text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
-                        >
-                            Facebook.com
-                        </a>
+      <!-- Frontend -->
+      <article class="group rounded-3xl border border-gray-200/80 dark:border-white/10 bg-white dark:bg-white/[0.035] p-6 sm:p-7 shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300">
 
-                        <a
-                            href="mailto:joefellato215@gmail.com"
-                            aria-label="Email Joefel"
-                            class="text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
-                        >
-                            Email
-                        </a>
-                    </div>
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-500">
+              01
+            </div>
+
+            <h3 class="mt-2 text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Frontend
+            </h3>
+          </div>
+
+          <div class="h-11 w-11 rounded-2xl bg-indigo-500/10 border border-indigo-500/10 flex items-center justify-center text-indigo-500 font-bold">
+            &lt;/&gt;
+          </div>
+        </div>
+
+        <p class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-400">
+          Building responsive interfaces with clean structure,
+          modern styling, and thoughtful user experiences.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="skill-pill">HTML5</span>
+          <span class="skill-pill">CSS3</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">Tailwind CSS</span>
+        </div>
+      </article>
+
+
+      <!-- Backend -->
+      <article class="group rounded-3xl border border-gray-200/80 dark:border-white/10 bg-white dark:bg-white/[0.035] p-6 sm:p-7 shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300">
+
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-500">
+              02
+            </div>
+
+            <h3 class="mt-2 text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Backend
+            </h3>
+          </div>
+
+          <div class="h-11 w-11 rounded-2xl bg-violet-500/10 border border-violet-500/10 flex items-center justify-center text-violet-500 font-bold">
+            API
+          </div>
+        </div>
+
+        <p class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-400">
+          Developing practical server-side systems, APIs, data
+          workflows, and application logic.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Flask</span>
+          <span class="skill-pill">SQLite</span>
+        </div>
+      </article>
+
+
+      <!-- Tools -->
+      <article class="group rounded-3xl border border-gray-200/80 dark:border-white/10 bg-white dark:bg-white/[0.035] p-6 sm:p-7 shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300">
+
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-500">
+              03
+            </div>
+
+            <h3 class="mt-2 text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Tools
+            </h3>
+          </div>
+
+          <div class="h-11 w-11 rounded-2xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-300 font-bold">
+            +++
+          </div>
+        </div>
+
+        <p class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-400">
+          Using modern development and design tools to turn ideas
+          into maintainable, polished products.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">GitHub</span>
+          <span class="skill-pill">Figma</span>
+        </div>
+      </article>
+
+
+      <!-- Focus -->
+      <article class="group rounded-3xl border border-gray-200/80 dark:border-white/10 bg-white dark:bg-white/[0.035] p-6 sm:p-7 shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300">
+
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-500">
+              04
+            </div>
+
+            <h3 class="mt-2 text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Development Focus
+            </h3>
+          </div>
+
+          <div class="h-11 w-11 rounded-2xl bg-emerald-500/10 border border-emerald-500/10 flex items-center justify-center text-emerald-500 font-bold">
+            ●
+          </div>
+        </div>
+
+        <p class="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-400">
+          Areas where I enjoy combining technology, design, and
+          problem-solving to build useful products.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="skill-pill">Responsive Design</span>
+          <span class="skill-pill">UI Development</span>
+          <span class="skill-pill">E-Commerce</span>
+          <span class="skill-pill">AI &amp; Automation</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Bottom statement -->
+    <div class="mt-8 rounded-3xl border border-indigo-500/10 bg-indigo-500/[0.035] dark:bg-indigo-500/[0.04] p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+        <div>
+          <p class="text-sm font-semibold text-gray-900 dark:text-white">
+            Build. Learn. Improve.
+          </p>
+
+          <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+            I continuously expand my toolkit through real projects and hands-on development.
+          </p>
+        </div>
+
+        <span class="inline-flex w-fit items-center gap-2 rounded-full border border-indigo-500/15 bg-white/70 dark:bg-white/[0.04] px-4 py-2 text-xs font-semibold text-indigo-600 dark:text-indigo-300">
+          Always building
+          <span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .skill-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(129, 140, 248, 0.18);
+    background: rgba(99, 102, 241, 0.06);
+    padding: 0.45rem 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgb(79 70 229);
+    transition: all 0.2s ease;
+  }
+
+  .skill-pill:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .dark .skill-pill {
+    border-color: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    color: rgb(199 210 254);
+  }
+</style>
+
+<!-- Projects -->
+<section id="projects" class="py-24 sm:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section heading -->
+    <div class="max-w-2xl mb-12 sm:mb-16">
+      <p class="text-sm font-semibold tracking-[0.22em] uppercase text-indigo-500 mb-4">
+        Selected Work
+      </p>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Things I've built.
+      </h2>
+
+      <p class="mt-5 text-base sm:text-lg leading-8 text-gray-600 dark:text-gray-400">
+        A selection of real-world projects I've designed, developed,
+        and continue to improve.
+      </p>
+    </div>
+
+    <!-- Projects grid -->
+    <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+
+      <!-- Prometheus Market -->
+      <article class="lg:col-span-2 group overflow-hidden rounded-3xl border border-gray-200/80 dark:border-white/10 bg-white dark:bg-white/[0.035] shadow-sm hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500">
+
+        <!-- Real project visual -->
+        <div class="relative min-h-[300px] sm:min-h-[380px] overflow-hidden bg-[#080810]">
+
+          <div class="absolute inset-0 bg-gradient-to-br from-indigo-950/80 via-[#11112b] to-black"></div>
+
+          <div class="absolute -top-32 -right-20 w-80 h-80 rounded-full bg-indigo-500/20 blur-3xl"></div>
+          <div class="absolute -bottom-32 -left-20 w-80 h-80 rounded-full bg-violet-500/20 blur-3xl"></div>
+
+          <!-- Real product showcase -->
+          <div class="absolute inset-5 sm:inset-10 grid grid-cols-2 gap-3 sm:gap-5">
+
+            <div class="relative col-span-2 sm:col-span-1 overflow-hidden rounded-2xl border border-white/10 shadow-2xl transform group-hover:-translate-y-2 transition-transform duration-700">
+              <img
+                src="images/projects/prometheus-product-1.jpg"
+                alt=""
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              >
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-white/80">
+                  Prometheus Market
+                </span>
+              </div>
+            </div>
+
+            <div class="hidden sm:grid grid-rows-2 gap-5">
+              <div class="relative overflow-hidden rounded-2xl border border-white/10 shadow-xl">
+                <img
+                  src="images/projects/prometheus-product-2.jpg"
+                  alt=""
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                >
+                <div class="absolute inset-0 bg-black/10"></div>
+              </div>
+
+              <div class="relative overflow-hidden rounded-2xl border border-white/10 shadow-xl">
+                <img
+                  src="images/projects/prometheus-product-3.jpg"
+                  alt=""
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute top-5 right-5 sm:top-8 sm:right-8 rounded-full border border-[#ffcc00]/20 bg-[#ffcc00]/10 px-3 py-1.5 text-xs font-semibold text-[#ffcc00] backdrop-blur">
+            In Development
+          </div>
+
+        </div>
+
+        <!-- Content -->
+        <div class="p-6 sm:p-8 lg:p-10">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-500">
+              E-Commerce
+            </span>
+
+            <span class="text-gray-300 dark:text-white/20">•</span>
+
+            <span class="text-xs text-gray-500 dark:text-gray-400">
+              Full Stack
+            </span>
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Prometheus Market
+          </h3>
+
+          <p class="mt-4 max-w-3xl text-gray-600 dark:text-gray-400 leading-7">
+            A full-stack e-commerce platform with product management,
+            shopping cart, checkout, customer accounts, inventory,
+            order management, analytics, and business intelligence.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="project-tech">HTML</span>
+            <span class="project-tech">JavaScript</span>
+            <span class="project-tech">Flask</span>
+            <span class="project-tech">SQLite</span>
+            <span class="project-tech">Tailwind</span>
+          </div>
+
+          <div class="mt-8 flex items-center justify-between gap-4">
+            <span class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+              <span class="h-2 w-2 rounded-full bg-[#ffcc00]"></span>
+              Currently building
+            </span>
+
+            <span class="text-sm font-semibold text-gray-400 dark:text-gray-500">
+              Full platform
+            </span>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- Miguel Lechon -->
+      <article class="group overflow-hidden rounded-3xl border border-gray-200/80 dark:border-white/10 bg-white dark:bg-white/[0.035] shadow-sm hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500">
+
+        <!-- Real project image -->
+        <div class="relative h-64 sm:h-72 overflow-hidden bg-black">
+
+          <img
+            src="images/projects/miguel-lechon.jpg"
+            alt="Miguel Lechon website"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+          >
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent"></div>
+
+          <div class="absolute top-5 right-5 rounded-full bg-white/85 dark:bg-black/45 backdrop-blur border border-white/30 dark:border-white/10 px-3 py-1.5 text-xs font-semibold text-gray-800 dark:text-white">
+            Live
+          </div>
+
+          <div class="absolute bottom-5 left-5">
+            <div class="text-[10px] uppercase tracking-[0.2em] font-semibold text-white/70">
+              Live project
+            </div>
+            <div class="mt-1 text-lg sm:text-xl font-bold text-white">
+              Miguel Lechon
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-7">
+          <div class="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-500">
+            Business Website
+          </div>
+
+          <h3 class="mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Miguel Lechon
+          </h3>
+
+          <p class="mt-4 text-sm sm:text-base leading-7 text-gray-600 dark:text-gray-400">
+            A mobile-first business website for a local lechon brand,
+            featuring product information, size-based pricing, ordering,
+            contact details, and a responsive customer experience.
+          </p>
+
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="project-tech">HTML5</span>
+            <span class="project-tech">CSS</span>
+            <span class="project-tech">JavaScript</span>
+            <span class="project-tech">Flask</span>
+            <span class="project-tech">Responsive Design</span>
+          </div>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a
+              href="https://miguel-lechon.onrender.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-full bg-gray-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-gray-900 hover:opacity-90 transition"
+            >
+              Live Site ↗
+            </a>
+
+            <a
+              href="https://github.com/joefellato215-dev/miguel-lechon"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-full border border-gray-200 dark:border-white/10 px-5 py-2.5 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 transition"
+            >
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- Oculus AI -->
+      <article class="group overflow-hidden rounded-3xl border border-gray-200/80 dark:border-white/10 bg-white dark:bg-white/[0.035] shadow-sm hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500">
+
+        <div class="relative h-64 sm:h-72 overflow-hidden bg-gradient-to-br from-indigo-50 via-violet-50 to-white dark:from-[#111126] dark:via-[#16132b] dark:to-[#0b0b12]">
+
+          <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-indigo-500/20 blur-3xl"></div>
+
+          <div class="absolute left-6 right-6 top-7 bottom-0 rounded-t-2xl border border-indigo-200/70 dark:border-white/10 bg-white/80 dark:bg-[#10101d]/90 backdrop-blur shadow-2xl overflow-hidden transform group-hover:-translate-y-2 transition-transform duration-500">
+
+            <div class="h-8 border-b border-gray-200 dark:border-white/10 flex items-center px-3">
+              <div class="h-4 w-24 rounded bg-gray-200 dark:bg-white/10"></div>
+            </div>
+
+            <div class="p-5">
+              <div class="flex items-center gap-3">
+                <div class="h-9 w-9 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 font-bold">
+                  O
                 </div>
 
-                <!-- Static form -->
-                <form
-                    action="https://formsubmit.co/joefellato215@gmail.com"
-                    method="POST"
-                    class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950 sm:p-8"
-                >
-                    <input type="hidden" name="_subject" value="New Portfolio Message — Joefel M. Lato">
-                    <input type="hidden" name="_url" value="https://joefellato215-dev.github.io/">
-                    <input type="hidden" name="_next" value="https://joefellato215-dev.github.io/thanks.html">
-                    <input type="text" name="_honey" style="display:none">
+                <div>
+                  <div class="text-sm font-semibold text-gray-900 dark:text-white">
+                    Oculus AI
+                  </div>
 
-                    <div>
-                        <label for="name" class="text-sm font-semibold">Name</label>
-                        <input
-                            id="name"
-                            name="name"
-                            type="text"
-                            autocomplete="name"
-                            required
-                            class="mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-                            placeholder="Your name"
-                        >
-                    </div>
+                  <div class="text-[10px] text-gray-500 dark:text-gray-400">
+                    Assistant online
+                  </div>
+                </div>
+              </div>
 
-                    <div class="mt-5">
-                        <label for="email" class="text-sm font-semibold">Email</label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            autocomplete="email"
-                            required
-                            class="mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-                            placeholder="you@example.com"
-                        >
-                    </div>
-
-                    <div class="mt-5">
-                        <label for="message" class="text-sm font-semibold">Message</label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="5"
-                            required
-                            class="mt-2 w-full resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-                            placeholder="Tell me about your project..."
-                        ></textarea>
-                    </div>
-
-                    <button
-                        type="submit"
-                        class="mt-6 w-full rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950"
-                    >
-                        Send Message
-                    </button>
-                </form>
-
+              <div class="mt-5 space-y-2">
+                <div class="h-8 w-4/5 rounded-lg bg-gray-100 dark:bg-white/[0.05]"></div>
+                <div class="h-8 w-3/5 rounded-lg bg-indigo-500/10"></div>
+                <div class="h-8 w-5/6 rounded-lg bg-gray-100 dark:bg-white/[0.05]"></div>
+              </div>
             </div>
-        </section>
+          </div>
 
-    </main>
+          <div class="absolute top-5 right-5 rounded-full border border-indigo-300/30 bg-indigo-500/10 px-3 py-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-300 backdrop-blur">
+            In Development
+          </div>
+        </div>
 
-    <!-- Footer -->
+        <div class="p-6 sm:p-7">
+          <div class="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-500">
+            AI Project
+          </div>
+
+          <h3 class="mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Oculus AI
+          </h3>
+
+          <p class="mt-4 text-sm sm:text-base leading-7 text-gray-600 dark:text-gray-400">
+            A personal AI assistant project exploring voice interaction,
+            automation, intelligent tools, and web-based control through
+            a Python and Flask application.
+          </p>
+
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="project-tech">Python</span>
+            <span class="project-tech">Flask</span>
+            <span class="project-tech">JavaScript</span>
+            <span class="project-tech">AI</span>
+            <span class="project-tech">Automation</span>
+          </div>
+
+          <div class="mt-7 flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+            <span class="h-2 w-2 rounded-full bg-indigo-500"></span>
+            Currently building
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-tech {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(129, 140, 248, 0.18);
+    background: rgba(99, 102, 241, 0.06);
+    padding: 0.4rem 0.7rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgb(79 70 229);
+  }
+
+  .dark .project-tech {
+    border-color: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    color: rgb(199 210 254);
+  }
+</style>
+
+<!-- Contact -->
+<section id="contact" class="relative overflow-hidden border-t border-gray-200/70 bg-gray-50 py-24 dark:border-white/10 dark:bg-[#070714] sm:py-28">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-indigo-500/10 blur-3xl"></div>
+    <div class="absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-violet-500/10 blur-3xl"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-6 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-indigo-600 dark:text-indigo-400">
+          Contact
+        </p>
+
+        <h2 class="mt-4 text-4xl font-bold tracking-tight text-gray-950 dark:text-white sm:text-5xl">
+          Let's work
+          <span class="text-indigo-600 dark:text-indigo-400">together.</span>
+        </h2>
+
+        <p class="mt-6 max-w-md text-lg leading-8 text-gray-600 dark:text-gray-400">
+          Have a project, idea, or opportunity? Send me a message and let's start a conversation.
+        </p>
+
+        <div class="mt-10 space-y-3">
+
+          <a href="https://github.com/joefellato215-dev"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="group flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-500/5 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-indigo-400/40">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-950 text-sm font-bold text-white dark:bg-white dark:text-gray-950">GH</span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-sm font-semibold text-gray-950 dark:text-white">GitHub</span>
+              <span class="block truncate text-xs text-gray-500 dark:text-gray-500">github.com/joefellato215-dev</span>
+            </span>
+            <span class="text-gray-400 transition group-hover:translate-x-1 group-hover:text-indigo-500">↗</span>
+          </a>
+
+          <a href="https://www.facebook.com/share/14zHqicu6ij/"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="group flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-500/5 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-indigo-400/40">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600 text-sm font-bold text-white">f</span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-sm font-semibold text-gray-950 dark:text-white">Facebook</span>
+              <span class="block text-xs text-gray-500 dark:text-gray-500">Connect with me</span>
+            </span>
+            <span class="text-gray-400 transition group-hover:translate-x-1 group-hover:text-indigo-500">↗</span>
+          </a>
+
+          <a href="mailto:joefellato215@gmail.com"
+             class="group flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-500/5 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-indigo-400/40">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 text-sm font-bold text-gray-900 dark:bg-white/10 dark:text-white">@</span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-sm font-semibold text-gray-950 dark:text-white">Email</span>
+              <span class="block truncate text-xs text-gray-500 dark:text-gray-500">joefellato215@gmail.com</span>
+            </span>
+            <span class="text-gray-400 transition group-hover:translate-x-1 group-hover:text-indigo-500">↗</span>
+          </a>
+
+        </div>
+
+        <div class="mt-8 flex items-center gap-3 text-xs text-gray-500 dark:text-gray-500">
+          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+          Open to meaningful projects and opportunities
+        </div>
+      </div>
+
+      <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-xl shadow-gray-900/5 dark:border-white/10 dark:bg-white/[0.035] sm:p-8 lg:p-10">
+
+        <div class="mb-8">
+          <p class="text-sm font-semibold text-gray-950 dark:text-white">Send a message</p>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-500">Tell me a little about what you're building.</p>
+        </div>
+
+        <form action="https://formsubmit.co/joefellato215@gmail.com" method="POST" class="space-y-5">
+          <input type="hidden" name="_subject" value="Portfolio Contact — New Message">
+          <input type="hidden" name="_url" value="https://joefellato215-dev.github.io/">
+          <input type="hidden" name="_next" value="https://joefellato215-dev.github.io/#contact">
+          <input type="text" name="_honey" style="display:none">
+
+          <div>
+            <label for="contact-name" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+            <input id="contact-name" type="text" name="name" autocomplete="name" placeholder="Your name" required
+              class="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm text-gray-950 outline-none transition placeholder:text-gray-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10 dark:bg-white/[0.035] dark:text-white dark:placeholder:text-gray-600">
+          </div>
+
+          <div>
+            <label for="contact-email" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+            <input id="contact-email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required
+              class="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm text-gray-950 outline-none transition placeholder:text-gray-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10 dark:bg-white/[0.035] dark:text-white dark:placeholder:text-gray-600">
+          </div>
+
+          <div>
+            <label for="contact-message" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+            <textarea id="contact-message" name="message" rows="6" placeholder="Tell me about your project..." required
+              class="w-full resize-y rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm leading-6 text-gray-950 outline-none transition placeholder:text-gray-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/10 dark:bg-white/[0.035] dark:text-white dark:placeholder:text-gray-600"></textarea>
+          </div>
+
+          <button type="submit"
+            class="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gray-950 px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-gray-950/10 transition hover:-translate-y-0.5 hover:bg-indigo-600 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 dark:bg-white dark:text-gray-950 dark:hover:bg-indigo-400">
+            Send Message
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
     <footer class="border-t border-slate-200 py-8 dark:border-slate-800">
         <div class="mx-auto flex max-w-6xl flex-col gap-3 px-5 text-center text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:text-left lg:px-8">
             <p>
