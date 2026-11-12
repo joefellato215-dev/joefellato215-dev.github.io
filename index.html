@@ -34,6 +34,136 @@
             }
         };
     </script>
+
+    <style id="portfolio-visual-polish-v1">
+        /* =========================================================
+           PORTFOLIO VISUAL POLISH v1
+           Visual-only layer — no content/structure/JS changes
+           ========================================================= */
+
+        /* Page depth */
+        body {
+            background:
+                radial-gradient(circle at 10% 0%, rgba(79, 70, 229, 0.055), transparent 28rem),
+                radial-gradient(circle at 90% 18%, rgba(124, 58, 237, 0.045), transparent 30rem),
+                #ffffff;
+        }
+
+        .dark body {
+            background:
+                radial-gradient(circle at 10% 0%, rgba(79, 70, 229, 0.12), transparent 30rem),
+                radial-gradient(circle at 90% 18%, rgba(124, 58, 237, 0.08), transparent 32rem),
+                #020617;
+        }
+
+        /* Cleaner section rhythm */
+        main > section {
+            position: relative;
+        }
+
+        main > section + section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(148, 163, 184, 0.22),
+                transparent
+            );
+        }
+
+        .dark main > section + section::before {
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(148, 163, 184, 0.14),
+                transparent
+            );
+        }
+
+        /* Premium card surfaces */
+        .rounded-3xl {
+            transition:
+                transform 220ms ease,
+                box-shadow 220ms ease,
+                border-color 220ms ease,
+                background-color 220ms ease;
+        }
+
+        .rounded-3xl:hover {
+            border-color: rgba(99, 102, 241, 0.24);
+        }
+
+        .dark .rounded-3xl:hover {
+            border-color: rgba(129, 140, 248, 0.28);
+        }
+
+        /* Project / image polish */
+        img {
+            transition:
+                transform 350ms ease,
+                filter 350ms ease;
+        }
+
+        .group:hover img {
+            filter: saturate(1.04) contrast(1.02);
+        }
+
+        /* Softer buttons */
+        a.rounded-full,
+        button.rounded-full {
+            transition:
+                transform 180ms ease,
+                box-shadow 180ms ease,
+                background-color 180ms ease,
+                border-color 180ms ease;
+        }
+
+        a.rounded-full:hover,
+        button.rounded-full:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Form controls */
+        input,
+        textarea {
+            transition:
+                border-color 180ms ease,
+                box-shadow 180ms ease,
+                background-color 180ms ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+        }
+
+        /* Better keyboard accessibility */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid rgb(99, 102, 241);
+            outline-offset: 3px;
+        }
+
+        /* Respect reduced-motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+
 </head>
 
 <body class="bg-white text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
@@ -152,13 +282,12 @@
                         </h1>
 
                         <p class="mt-7 max-w-2xl text-xl font-medium leading-8 text-slate-700 sm:text-2xl sm:leading-9 dark:text-slate-300">
-                            I build practical digital experiences with
-                            <span class="text-indigo-600 dark:text-indigo-400">code, design, and purpose.</span>
+                            I build websites and web applications that
+                            <span class="text-indigo-600 dark:text-indigo-400">help businesses grow.</span>
                         </p>
 
                         <p class="mt-5 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-400 sm:text-lg">
-                            From responsive websites to full-stack applications, I turn ideas into clean,
-                            functional, and user-focused digital products.
+                            I create responsive, modern, and practical digital experiences — from business websites and e-commerce platforms to full-stack applications and AI-powered tools.
                         </p>
 
                         <div class="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -174,17 +303,17 @@
                                 href="#contact"
                                 class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white/70 px-6 py-3.5 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-indigo-400 hover:text-indigo-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-indigo-500 dark:hover:text-indigo-400 dark:focus:ring-offset-slate-950"
                             >
-                                Let's Connect
+                                Let's Work Together
                             </a>
                         </div>
 
                         <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-medium uppercase tracking-[0.16em] text-slate-500 dark:text-slate-500">
                             <span class="flex items-center gap-2">
                                 <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
-                                Building with purpose
+                                Available for projects
                             </span>
                             <span class="hidden h-4 w-px bg-slate-300 sm:block dark:bg-slate-700"></span>
-                            <span>Web · E-commerce · AI</span>
+                            <span>Websites · E-commerce · Full-Stack · AI</span>
                         </div>
                     </div>
 
