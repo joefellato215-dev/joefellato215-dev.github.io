@@ -164,6 +164,710 @@
         }
     </style>
 
+
+    <style id="portfolio-project-professional-v1">
+        /* =========================================================
+           SELECTED WORK — PROFESSIONAL VISUAL UPGRADE v1
+           Visual-only. Existing content, links and JS preserved.
+           ========================================================= */
+
+        /* Project section */
+        #projects {
+            position: relative;
+        }
+
+        #projects > div {
+            position: relative;
+        }
+
+        /* Unified project-card surface */
+        #projects article {
+            position: relative;
+            isolation: isolate;
+            border-color: rgba(148, 163, 184, 0.22);
+            box-shadow:
+                0 10px 30px rgba(15, 23, 42, 0.045),
+                0 2px 8px rgba(15, 23, 42, 0.025);
+        }
+
+        #projects article:hover {
+            transform: translateY(-3px);
+            border-color: rgba(99, 102, 241, 0.28);
+            box-shadow:
+                0 24px 55px rgba(15, 23, 42, 0.10),
+                0 8px 20px rgba(79, 70, 229, 0.07);
+        }
+
+        .dark #projects article {
+            border-color: rgba(255, 255, 255, 0.09);
+            box-shadow:
+                0 18px 45px rgba(0, 0, 0, 0.20),
+                0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark #projects article:hover {
+            border-color: rgba(129, 140, 248, 0.30);
+            box-shadow:
+                0 28px 65px rgba(0, 0, 0, 0.34),
+                0 8px 24px rgba(79, 70, 229, 0.12);
+        }
+
+        /* Featured Prometheus presentation */
+        #projects article.lg\:col-span-2 > div:first-child {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        #projects article.lg\:col-span-2 > div:first-child::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(255,255,255,0.035),
+                    transparent 28%,
+                    transparent 72%,
+                    rgba(0,0,0,0.12)
+                );
+        }
+
+        /* Project image treatment */
+        #projects article img {
+            filter: saturate(0.96) contrast(1.02);
+        }
+
+        #projects article:hover img {
+            filter: saturate(1.06) contrast(1.04);
+        }
+
+        /* Project technology pills */
+        #projects .project-tech {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(99, 102, 241, 0.14);
+            border-radius: 9999px;
+            background: rgba(99, 102, 241, 0.045);
+            padding: 0.42rem 0.72rem;
+            font-size: 0.70rem;
+            line-height: 1;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: rgb(79 70 229);
+            transition:
+                transform 180ms ease,
+                border-color 180ms ease,
+                background-color 180ms ease;
+        }
+
+        #projects article:hover .project-tech {
+            border-color: rgba(99, 102, 241, 0.20);
+        }
+
+        #projects .project-tech:hover {
+            transform: translateY(-1px);
+            border-color: rgba(99, 102, 241, 0.32);
+            background: rgba(99, 102, 241, 0.075);
+        }
+
+        .dark #projects .project-tech {
+            border-color: rgba(129, 140, 248, 0.16);
+            background: rgba(129, 140, 248, 0.055);
+            color: rgb(199 210 254);
+        }
+
+        .dark #projects .project-tech:hover {
+            border-color: rgba(129, 140, 248, 0.32);
+            background: rgba(129, 140, 248, 0.10);
+        }
+
+        /* Status badges */
+        #projects article [class*="rounded-full"] {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Prometheus status */
+        #projects article.lg\:col-span-2 [class*="text-\[\#ffcc00\]"] {
+            box-shadow: 0 8px 24px rgba(255, 204, 0, 0.08);
+        }
+
+        /* Live project action buttons */
+        #projects a.rounded-full {
+            min-height: 2.65rem;
+        }
+
+        #projects a.rounded-full:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Project content hierarchy */
+        #projects article h3 {
+            transition: color 180ms ease;
+        }
+
+        #projects article:hover h3 {
+            color: rgb(67 56 202);
+        }
+
+        .dark #projects article:hover h3 {
+            color: rgb(165 180 252);
+        }
+
+        /* Make featured project feel intentionally dominant */
+        #projects article.lg\:col-span-2 h3 {
+            letter-spacing: -0.025em;
+        }
+
+        /* Supporting project cards */
+        #projects .lg\:grid-cols-2 > article:not(.lg\:col-span-2) {
+            min-height: 100%;
+        }
+
+        /* Keep project visuals crisp on smaller screens */
+        @media (max-width: 639px) {
+            #projects article:hover {
+                transform: translateY(-2px);
+            }
+
+            #projects article.lg\:col-span-2 > div:first-child {
+                min-height: 280px;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            #projects article,
+            #projects article img,
+            #projects .project-tech,
+            #projects article h3 {
+                transition: none !important;
+            }
+
+            #projects article:hover,
+            #projects a.rounded-full:hover,
+            #projects .project-tech:hover {
+                transform: none !important;
+            }
+        }
+    </style>
+
+
+<style id="portfolio-project-visual-v2">
+/* =========================================================
+   PROJECT VISUAL PRESENTATION v2
+   Visual-only. Existing project content and links preserved.
+   ========================================================= */
+
+#projects article {
+    overflow: hidden;
+}
+
+#projects article .project-visual-label {
+    position: absolute;
+    left: 1.25rem;
+    top: 1.25rem;
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 9999px;
+    background: rgba(0,0,0,0.30);
+    padding: 0.42rem 0.72rem;
+    color: rgba(255,255,255,0.88);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+#projects article .project-visual-label-dot {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 9999px;
+    background: currentColor;
+    opacity: 0.9;
+}
+
+/* Featured project gets a stronger visual frame */
+#projects article.lg\:col-span-2 .project-visual-frame {
+    position: absolute;
+    inset: 1.25rem;
+    z-index: 10;
+    pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1.25rem;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.025),
+        0 20px 50px rgba(0,0,0,0.12);
+}
+
+/* Give real project imagery a subtle professional finish */
+#projects article img {
+    transform-origin: center;
+}
+
+#projects article:hover .project-visual-frame {
+    border-color: rgba(129,140,248,0.18);
+}
+
+/* Live project visual */
+#projects article:not(.lg\:col-span-2) .project-visual-label {
+    background: rgba(0,0,0,0.38);
+}
+
+/* Oculus mockup gains a slightly stronger product-window treatment */
+#projects article .project-ui-frame {
+    box-shadow:
+        0 24px 55px rgba(15,23,42,0.12),
+        0 8px 24px rgba(79,70,229,0.08);
+}
+
+.dark #projects article .project-ui-frame {
+    box-shadow:
+        0 28px 65px rgba(0,0,0,0.34),
+        0 8px 24px rgba(79,70,229,0.12);
+}
+
+@media (max-width: 639px) {
+    #projects article .project-visual-label {
+        left: 1rem;
+        top: 1rem;
+        font-size: 0.58rem;
+    }
+
+    #projects article.lg\:col-span-2 .project-visual-frame {
+        inset: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #projects article img {
+        transition: none !important;
+    }
+}
+</style>
+
+<style id="portfolio-services-v1">
+/* =========================================================
+   SERVICES SECTION v1
+   Professional presentation. No existing functionality changed.
+   ========================================================= */
+
+#services {
+    position: relative;
+}
+
+#services .service-card {
+    position: relative;
+    min-height: 100%;
+    padding: 1.5rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.04),
+        0 2px 8px rgba(15, 23, 42, 0.025);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+#services .service-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(99, 102, 241, 0.22);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow:
+        0 18px 42px rgba(15, 23, 42, 0.08),
+        0 4px 12px rgba(79, 70, 229, 0.06);
+}
+
+.dark #services .service-card {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.035);
+    box-shadow:
+        0 14px 36px rgba(0, 0, 0, 0.16);
+}
+
+.dark #services .service-card:hover {
+    border-color: rgba(129, 140, 248, 0.28);
+    background: rgba(255, 255, 255, 0.055);
+    box-shadow:
+        0 20px 46px rgba(0, 0, 0, 0.28),
+        0 5px 16px rgba(79, 70, 229, 0.08);
+}
+
+#services .service-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(99, 102, 241, 0.16);
+    border-radius: 0.85rem;
+    background: rgba(99, 102, 241, 0.07);
+    color: rgb(79 70 229);
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#services .service-icon svg {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+#services .service-card:hover .service-icon {
+    transform: translateY(-2px);
+    border-color: rgba(99, 102, 241, 0.28);
+    background: rgba(99, 102, 241, 0.11);
+}
+
+.dark #services .service-icon {
+    border-color: rgba(129, 140, 248, 0.16);
+    background: rgba(129, 140, 248, 0.08);
+    color: rgb(165 180 252);
+}
+
+.dark #services .service-card:hover .service-icon {
+    border-color: rgba(165, 180, 252, 0.28);
+    background: rgba(129, 140, 248, 0.13);
+}
+
+#services .service-title {
+    margin-bottom: 0.7rem;
+    color: rgb(17 24 39);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+.dark #services .service-title {
+    color: rgb(255 255 255);
+}
+
+#services .service-description {
+    color: rgb(75 85 99);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.dark #services .service-description {
+    color: rgb(156 163 175);
+}
+
+#services .services-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 639px) {
+    #services .service-card {
+        padding: 1.35rem;
+    }
+
+    #services .services-cta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #services .service-card,
+    #services .service-icon {
+        transition: none !important;
+    }
+
+    #services .service-card:hover,
+    #services .service-card:hover .service-icon {
+        transform: none !important;
+    }
+}
+</style>
+
+<style id="portfolio-process-v1">
+/* =========================================================
+   HOW I WORK / PROCESS SECTION v1
+   Professional presentation. Existing functionality preserved.
+   ========================================================= */
+
+#process {
+    position: relative;
+}
+
+#process .process-card {
+    position: relative;
+    min-height: 100%;
+    padding: 1.5rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.035),
+        0 2px 8px rgba(15, 23, 42, 0.02);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#process .process-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(99, 102, 241, 0.22);
+    box-shadow:
+        0 18px 42px rgba(15, 23, 42, 0.075),
+        0 4px 12px rgba(79, 70, 229, 0.055);
+}
+
+.dark #process .process-card {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow:
+        0 14px 36px rgba(0, 0, 0, 0.15);
+}
+
+.dark #process .process-card:hover {
+    border-color: rgba(129, 140, 248, 0.27);
+    box-shadow:
+        0 20px 46px rgba(0, 0, 0, 0.27),
+        0 5px 16px rgba(79, 70, 229, 0.07);
+}
+
+#process .process-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(99, 102, 241, 0.18);
+    border-radius: 0.7rem;
+    background: rgba(99, 102, 241, 0.07);
+    color: rgb(79 70 229);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.dark #process .process-number {
+    border-color: rgba(129, 140, 248, 0.17);
+    background: rgba(129, 140, 248, 0.08);
+    color: rgb(165 180 252);
+}
+
+#process .process-title {
+    margin-bottom: 0.7rem;
+    color: rgb(17 24 39);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+.dark #process .process-title {
+    color: rgb(255 255 255);
+}
+
+#process .process-description {
+    color: rgb(75 85 99);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.dark #process .process-description {
+    color: rgb(156 163 175);
+}
+
+@media (max-width: 639px) {
+    #process .process-card {
+        padding: 1.35rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #process .process-card {
+        transition: none !important;
+    }
+
+    #process .process-card:hover {
+        transform: none !important;
+    }
+}
+</style>
+
+<style id="portfolio-credibility-v1">
+/* =========================================================
+   BUILT WITH PURPOSE / CREDIBILITY SECTION v1
+   Credibility without unsupported claims or fake metrics.
+   ========================================================= */
+
+#credibility {
+    position: relative;
+}
+
+#credibility .credibility-panel {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    border: 1px solid rgba(99, 102, 241, 0.13);
+    border-radius: 1.75rem;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.08), transparent 34%),
+        rgba(255, 255, 255, 0.62);
+    box-shadow:
+        0 18px 48px rgba(15, 23, 42, 0.045),
+        0 3px 12px rgba(15, 23, 42, 0.025);
+}
+
+.dark #credibility .credibility-panel {
+    border-color: rgba(129, 140, 248, 0.14);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.12), transparent 34%),
+        rgba(255, 255, 255, 0.025);
+    box-shadow:
+        0 22px 58px rgba(0, 0, 0, 0.22);
+}
+
+#credibility .credibility-item {
+    padding: 1.2rem;
+    border: 1px solid rgba(15, 23, 42, 0.07);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.58);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+#credibility .credibility-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(99, 102, 241, 0.2);
+    background: rgba(255, 255, 255, 0.86);
+}
+
+.dark #credibility .credibility-item {
+    border-color: rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.dark #credibility .credibility-item:hover {
+    border-color: rgba(129, 140, 248, 0.24);
+    background: rgba(255, 255, 255, 0.045);
+}
+
+#credibility .credibility-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+    border-radius: 0.6rem;
+    background: rgba(99, 102, 241, 0.08);
+    color: rgb(79 70 229);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+}
+
+.dark #credibility .credibility-mark {
+    background: rgba(129, 140, 248, 0.1);
+    color: rgb(165 180 252);
+}
+
+#credibility .credibility-item h3 {
+    margin-bottom: 0.55rem;
+    color: rgb(17 24 39);
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.dark #credibility .credibility-item h3 {
+    color: rgb(255 255 255);
+}
+
+#credibility .credibility-item p {
+    color: rgb(75 85 99);
+    font-size: 0.84rem;
+    line-height: 1.7;
+}
+
+.dark #credibility .credibility-item p {
+    color: rgb(156 163 175);
+}
+
+@media (max-width: 639px) {
+    #credibility .credibility-panel {
+        padding: 1.4rem;
+        border-radius: 1.4rem;
+    }
+
+    #credibility .credibility-item {
+        padding: 1.1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #credibility .credibility-item {
+        transition: none !important;
+    }
+
+    #credibility .credibility-item:hover {
+        transform: none !important;
+    }
+}
+</style>
+
+<style id="portfolio-contact-cta-v1">
+/* =========================================================
+   CONTACT CTA v1
+   Visual-only enhancement for the professional contact CTA.
+   ========================================================= */
+
+#contact .contact-cta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+#contact .contact-cta a {
+    box-shadow:
+        0 10px 24px rgba(15, 23, 42, 0.08),
+        0 4px 10px rgba(79, 70, 229, 0.05);
+}
+
+#contact .contact-cta a:hover {
+    box-shadow:
+        0 14px 30px rgba(15, 23, 42, 0.12),
+        0 6px 16px rgba(79, 70, 229, 0.10);
+}
+
+@media (max-width: 639px) {
+    #contact .contact-cta {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #contact .contact-cta a {
+        transition: none !important;
+    }
+}
+</style>
+
 </head>
 
 <body class="bg-white text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
@@ -471,7 +1175,7 @@
       </div>
 
       <!-- Focus -->
-      <div class="rounded-3xl border border-gray-200 bg-gray-950 p-8 text-white shadow-xl shadow-gray-900/10 dark:border-white/10 dark:bg-[#0f0f23] sm:p-10">
+      <div class="rounded-3xl border border-gray-200 bg-white p-8 text-gray-950 shadow-xl shadow-gray-900/10 dark:border-white/10 dark:bg-[#0f0f23] dark:text-white sm:p-10">
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-300">
           What I build
         </p>
@@ -479,48 +1183,48 @@
         <div class="mt-8 space-y-6">
 
           <div class="flex gap-4">
-            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10 text-sm">
+            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-sm text-gray-700 dark:bg-white/10 dark:text-white">
               &lt;/&gt;
             </span>
             <div>
               <h3 class="font-semibold">Web Experiences</h3>
-              <p class="mt-1 text-sm leading-6 text-gray-400">
+              <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
                 Responsive interfaces designed for real people and real devices.
               </p>
             </div>
           </div>
 
           <div class="flex gap-4">
-            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10 text-sm">
+            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-sm text-gray-700 dark:bg-white/10 dark:text-white">
               ◇
             </span>
             <div>
               <h3 class="font-semibold">Full-Stack Applications</h3>
-              <p class="mt-1 text-sm leading-6 text-gray-400">
+              <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
                 Practical applications with backend logic, databases, APIs, and workflows.
               </p>
             </div>
           </div>
 
           <div class="flex gap-4">
-            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10 text-sm">
+            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-sm text-gray-700 dark:bg-white/10 dark:text-white">
               AI
             </span>
             <div>
               <h3 class="font-semibold">AI & Automation</h3>
-              <p class="mt-1 text-sm leading-6 text-gray-400">
+              <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
                 Exploring intelligent tools, assistants, automation, and new ways to build.
               </p>
             </div>
           </div>
 
           <div class="flex gap-4">
-            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10 text-sm">
+            <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-sm text-gray-700 dark:bg-white/10 dark:text-white">
               ↗
             </span>
             <div>
               <h3 class="font-semibold">Continuous Improvement</h3>
-              <p class="mt-1 text-sm leading-6 text-gray-400">
+              <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
                 Every project is an opportunity to learn, refine, and build better.
               </p>
             </div>
@@ -745,6 +1449,305 @@
   }
 </style>
 
+<!-- Services -->
+<section id="services" class="py-24 sm:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section heading -->
+    <div class="max-w-2xl mb-12 sm:mb-16">
+      <p class="text-sm font-semibold tracking-[0.22em] uppercase text-indigo-500 mb-4">
+        What I Can Build
+      </p>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Practical digital solutions.
+      </h2>
+
+      <p class="mt-5 text-base sm:text-lg leading-8 text-gray-600 dark:text-gray-400">
+        I build practical digital experiences for businesses, ideas, and products —
+        from responsive websites to full-stack applications and AI-powered tools.
+      </p>
+    </div>
+
+    <!-- Services grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+
+      <!-- Business Websites -->
+      <article class="service-card group">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <path d="M3 9h18"></path>
+            <path d="M7 6.5h.01M10 6.5h.01"></path>
+            <path d="M7 13h10M7 16h7"></path>
+          </svg>
+        </div>
+
+        <h3 class="service-title">
+          Business Websites
+        </h3>
+
+        <p class="service-description">
+          Responsive websites for businesses and brands, built to look clear
+          and work well across devices.
+        </p>
+      </article>
+
+      <!-- E-Commerce -->
+      <article class="service-card group">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L20 8H6"></path>
+            <circle cx="9" cy="20" r="1"></circle>
+            <circle cx="17" cy="20" r="1"></circle>
+            <path d="M9 11h7M9 13h5"></path>
+          </svg>
+        </div>
+
+        <h3 class="service-title">
+          E-Commerce
+        </h3>
+
+        <p class="service-description">
+          Online stores with products, checkout, orders, inventory,
+          and customer-facing experiences.
+        </p>
+      </article>
+
+      <!-- Full-Stack Applications -->
+      <article class="service-card group">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <path d="m8 9-3 3 3 3"></path>
+            <path d="m16 9 3 3-3 3"></path>
+            <path d="m14 8-4 8"></path>
+          </svg>
+        </div>
+
+        <h3 class="service-title">
+          Full-Stack Applications
+        </h3>
+
+        <p class="service-description">
+          Web applications combining responsive interfaces with backend logic,
+          APIs, databases, and practical workflows.
+        </p>
+      </article>
+
+      <!-- AI & Automation -->
+      <article class="service-card group">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="5" y="5" width="14" height="14" rx="3"></rect>
+            <path d="M9 9h6v6H9z"></path>
+            <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"></path>
+          </svg>
+        </div>
+
+        <h3 class="service-title">
+          AI & Automation
+        </h3>
+
+        <p class="service-description">
+          AI assistants, intelligent tools, automation experiments,
+          and web-based workflows.
+        </p>
+      </article>
+
+    </div>
+
+    <!-- Services CTA -->
+    <div class="services-cta mt-10 sm:mt-12">
+      <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+        Have something in mind?
+      </p>
+
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
+      >
+        Let's build it
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- How I Work -->
+<section id="process" class="py-24 sm:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section heading -->
+    <div class="max-w-2xl mb-12 sm:mb-16">
+      <p class="text-sm font-semibold tracking-[0.22em] uppercase text-indigo-500 mb-4">
+        How I Work
+      </p>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        From idea to working product.
+      </h2>
+
+      <p class="mt-5 text-base sm:text-lg leading-8 text-gray-600 dark:text-gray-400">
+        A practical approach focused on understanding the goal, building the right
+        solution, and improving it as the project evolves.
+      </p>
+    </div>
+
+    <!-- Process -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+
+      <!-- Step 01 -->
+      <article class="process-card">
+        <div class="process-number">01</div>
+
+        <h3 class="process-title">
+          Understand
+        </h3>
+
+        <p class="process-description">
+          Clarify the goal, users, requirements, and what the project needs
+          to accomplish.
+        </p>
+      </article>
+
+      <!-- Step 02 -->
+      <article class="process-card">
+        <div class="process-number">02</div>
+
+        <h3 class="process-title">
+          Plan
+        </h3>
+
+        <p class="process-description">
+          Break the idea into practical features, structure, and a clear
+          development path.
+        </p>
+      </article>
+
+      <!-- Step 03 -->
+      <article class="process-card">
+        <div class="process-number">03</div>
+
+        <h3 class="process-title">
+          Build
+        </h3>
+
+        <p class="process-description">
+          Develop the interface, backend, database, integrations, and
+          core functionality.
+        </p>
+      </article>
+
+      <!-- Step 04 -->
+      <article class="process-card">
+        <div class="process-number">04</div>
+
+        <h3 class="process-title">
+          Improve
+        </h3>
+
+        <p class="process-description">
+          Test, refine, fix issues, and continue improving the product
+          over time.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Built With Purpose -->
+<section id="credibility" class="py-20 sm:py-24">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="credibility-panel">
+
+      <!-- Heading -->
+      <div class="max-w-2xl">
+        <p class="text-sm font-semibold tracking-[0.22em] uppercase text-indigo-500 mb-4">
+          Built With Purpose
+        </p>
+
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Practical development. Real projects. Continuous improvement.
+        </h2>
+
+        <p class="mt-5 text-base leading-8 text-gray-600 dark:text-gray-400">
+          I focus on building useful digital products — combining thoughtful
+          interfaces, reliable functionality, and a willingness to keep learning
+          and improving.
+        </p>
+      </div>
+
+      <!-- Credibility points -->
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        <!-- Real Projects -->
+        <div class="credibility-item">
+          <span class="credibility-mark" aria-hidden="true">01</span>
+
+          <h3>
+            Real Projects
+          </h3>
+
+          <p>
+            Experience across business websites, e-commerce platforms,
+            and AI-focused projects.
+          </p>
+        </div>
+
+        <!-- Full-Stack Development -->
+        <div class="credibility-item">
+          <span class="credibility-mark" aria-hidden="true">02</span>
+
+          <h3>
+            Full-Stack Development
+          </h3>
+
+          <p>
+            Frontend interfaces connected with backend logic, databases,
+            APIs, and application workflows.
+          </p>
+        </div>
+
+        <!-- Business-Focused -->
+        <div class="credibility-item">
+          <span class="credibility-mark" aria-hidden="true">03</span>
+
+          <h3>
+            Business-Focused
+          </h3>
+
+          <p>
+            Practical websites and applications designed around clear goals,
+            useful features, and real-world needs.
+          </p>
+        </div>
+
+        <!-- Continuous Improvement -->
+        <div class="credibility-item">
+          <span class="credibility-mark" aria-hidden="true">04</span>
+
+          <h3>
+            Continuous Improvement
+          </h3>
+
+          <p>
+            Projects are tested, refined, expanded, and improved as new
+            requirements and ideas emerge.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 <!-- Projects -->
 <section id="projects" class="py-24 sm:py-28">
   <div class="max-w-6xl mx-auto px-6">
@@ -778,6 +1781,13 @@
 
           <div class="absolute -top-32 -right-20 w-80 h-80 rounded-full bg-indigo-500/20 blur-3xl"></div>
           <div class="absolute -bottom-32 -left-20 w-80 h-80 rounded-full bg-violet-500/20 blur-3xl"></div>
+
+          <div class="project-visual-label">
+            <span class="project-visual-label-dot"></span>
+            Featured project
+          </div>
+
+          <div class="project-visual-frame"></div>
 
           <!-- Real product showcase -->
           <div class="absolute inset-5 sm:inset-10 grid grid-cols-2 gap-3 sm:gap-5">
@@ -878,6 +1888,11 @@
         <!-- Real project image -->
         <div class="relative h-64 sm:h-72 overflow-hidden bg-black">
 
+          <div class="project-visual-label">
+            <span class="project-visual-label-dot text-emerald-400"></span>
+            Live website
+          </div>
+
           <img
             src="images/projects/miguel-lechon.jpg"
             alt="Miguel Lechon website"
@@ -911,9 +1926,10 @@
           </h3>
 
           <p class="mt-4 text-sm sm:text-base leading-7 text-gray-600 dark:text-gray-400">
-            A mobile-first business website for a local lechon brand,
-            featuring product information, size-based pricing, ordering,
-            contact details, and a responsive customer experience.
+            A mobile-first business website built for a local lechon brand,
+            designed to present products clearly, communicate pricing,
+            support customer inquiries and ordering, and provide a responsive
+            experience across devices.
           </p>
 
           <div class="mt-5 flex flex-wrap gap-2">
@@ -924,7 +1940,25 @@
             <span class="project-tech">Responsive Design</span>
           </div>
 
-          <div class="mt-7 flex flex-wrap gap-3">
+          <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
+            <span class="inline-flex items-center gap-2">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+              Live website
+            </span>
+            <span>Mobile-first</span>
+            <span>Real project</span>
+          </div>
+
+          <div class="mt-6 flex items-center justify-between gap-4 border-t border-gray-100 pt-5 dark:border-white/10">
+            <span class="text-xs font-semibold uppercase tracking-[0.16em] text-gray-400 dark:text-gray-500">
+              Project status
+            </span>
+            <span class="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+              Live & maintained
+            </span>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
             <a
               href="https://miguel-lechon.onrender.com/"
               target="_blank"
@@ -954,7 +1988,12 @@
 
           <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-indigo-500/20 blur-3xl"></div>
 
-          <div class="absolute left-6 right-6 top-7 bottom-0 rounded-t-2xl border border-indigo-200/70 dark:border-white/10 bg-white/80 dark:bg-[#10101d]/90 backdrop-blur shadow-2xl overflow-hidden transform group-hover:-translate-y-2 transition-transform duration-500">
+          <div class="project-visual-label">
+            <span class="project-visual-label-dot text-indigo-300"></span>
+            AI / Automation
+          </div>
+
+          <div class="project-ui-frame absolute left-6 right-6 top-7 bottom-0 rounded-t-2xl border border-indigo-200/70 dark:border-white/10 bg-white/80 dark:bg-[#10101d]/90 backdrop-blur shadow-2xl overflow-hidden transform group-hover:-translate-y-2 transition-transform duration-500">
 
             <div class="h-8 border-b border-gray-200 dark:border-white/10 flex items-center px-3">
               <div class="h-4 w-24 rounded bg-gray-200 dark:bg-white/10"></div>
@@ -1060,13 +2099,28 @@
         </p>
 
         <h2 class="mt-4 text-4xl font-bold tracking-tight text-gray-950 dark:text-white sm:text-5xl">
-          Let's work
-          <span class="text-indigo-600 dark:text-indigo-400">together.</span>
+          Let's build
+          <span class="text-indigo-600 dark:text-indigo-400">something useful.</span>
         </h2>
 
         <p class="mt-6 max-w-md text-lg leading-8 text-gray-600 dark:text-gray-400">
-          Have a project, idea, or opportunity? Send me a message and let's start a conversation.
+          Have a website, e-commerce platform, web application, or AI project in mind?
+          Tell me what you're working on and let's turn the idea into something practical.
         </p>
+
+        <div class="contact-cta mt-8">
+          <a
+            href="#contact-form"
+            class="inline-flex items-center justify-center gap-2 rounded-full bg-gray-950 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-gray-800 hover:shadow-lg hover:shadow-indigo-500/10 dark:bg-white dark:text-gray-950 dark:hover:bg-gray-100"
+          >
+            Start a conversation
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <span class="text-xs text-gray-500 dark:text-gray-500">
+            Tell me what you're building.
+          </span>
+        </div>
 
         <div class="mt-10 space-y-3">
 
@@ -1096,7 +2150,14 @@
 
           <a href="mailto:joefellato215@gmail.com"
              class="group flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-500/5 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-indigo-400/40">
-            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 text-sm font-bold text-gray-900 dark:bg-white/10 dark:text-white">@</span>
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 dark:bg-white/10" aria-hidden="true">
+  <svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true">
+    <rect x="3" y="3" width="18" height="18" rx="3" fill="#EA4335"/>
+    <path fill="#FFFFFF" d="M5.5 7.2 12 12.1l6.5-4.9v3L12 15.1l-6.5-4.9z"/>
+    <path fill="#C5221F" d="M5.5 19.5h2V9.7l-2-1.5z"/>
+    <path fill="#F8F9FA" d="M16.5 19.5h2V8.2l-2 1.5z"/>
+  </svg>
+</span>
             <span class="min-w-0 flex-1">
               <span class="block text-sm font-semibold text-gray-950 dark:text-white">Email</span>
               <span class="block truncate text-xs text-gray-500 dark:text-gray-500">joefellato215@gmail.com</span>
@@ -1119,7 +2180,7 @@
           <p class="mt-1 text-sm text-gray-500 dark:text-gray-500">Tell me a little about what you're building.</p>
         </div>
 
-        <form action="https://formsubmit.co/joefellato215@gmail.com" method="POST" class="space-y-5">
+        <form id="contact-form" action="https://formsubmit.co/joefellato215@gmail.com" method="POST" class="space-y-5">
           <input type="hidden" name="_subject" value="Portfolio Contact — New Message">
           <input type="hidden" name="_url" value="https://joefellato215-dev.github.io/">
           <input type="hidden" name="_next" value="https://joefellato215-dev.github.io/#contact">
