@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CVForge — Professional Resume Builder</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const get = (id) => document.getElementById(id);
+
+  const fields = {
+    firstName: get("first-name"),
+    middleName: get("middle-name"),
+    lastName: get("last-name"),
+    email: get("email"),
+    phone: get("phone"),
+    location: get("location"),
+    summary: get("summary"),
+    school: get("school"),
+    degree: get("degree"),
+    field: get("field"),
+    educationStatus: get("education-status"),
+    experience: get("experience"),
+    primarySkill: get("primary-skill"),
+    skillLevel: get("skill-level"),
+    additionalSkills: get("additional-skills"),
+    referenceName: get("reference-name"),
+    relationship: get("relationship"),
+    referenceEmail: get("reference-email"),
+    referencePhone: get("reference-phone"),
+    photo: get("profile-photo")
+  };
+
+  const preview = {
+    name: get("preview-name"),
+    title: get("preview-title"),
+    email: get("preview-email"),
+    phone: get("preview-phone"),
+    location: get("preview-location"),
+    summary: get("preview-summary"),
+    school: get("preview-school"),
+    degree: get("preview-degree"),
+    field: get("preview-field"),
+    experience: get("preview-experience"),
+    primarySkill: get("preview-primary-skill"),
+    skillName: get("preview-skill-name"),
+    skillLevel: get("preview-skill-level"),
+    skills: get("preview-skills"),
+    referenceName: get("preview-reference-name"),
+    referenceRelationship: get("preview-reference-relationship"),
+    referenceEmail: get("preview-reference-email"),
+    referencePhone: get("preview-reference-phone"),
+    referenceSection: get("preview-reference-section")
+  };
+
+  function value(field, fallback = "") {
+    return field && field.value.trim() ? field.value.trim() : fallback;
+  }
+
+  function updatePreview() {
+
+    const first = value(fields.firstName, "First");
+    const middle = value(fields.middleName, "");
+    const last = value(fields.lastName, "Last");
+
+    const fullName = [first, middle, last]
+      .filter(Boolean)
+      .join(" ");
+
+    preview.name.textContent = fullName;
+    preview.title.textContent = "Programmer / Web Developer";
+
+    preview.email.textContent = value(fields.email, "Email");
+    preview.phone.textContent = value(fields.phone, "Phone");
+    preview.location.textContent = value(fields.location, "Location");
+
+    preview.summary.textContent = value(
+      fields.summary,
+      "Add your professional summary to see it here."
+    );
+
+    preview.school.textContent = value(
+      fields.school,
+      "School / University"
+    );
+
+    preview.degree.textContent = value(
+      fields.degree,
+      "Degree / Qualification"
+    );
+
+    const educationParts = [
+      value(fields.field, ""),
+      value(fields.educationStatus, "")
+    ].filter(Boolean);
+
+    preview.field.textContent = educationParts.length
+      ? educationParts.join(" · ")
+      : "Education details";
+
+    preview.experience.textContent = value(
+      fields.experience,
+      "Add your professional experience or project experience here."
+    );
+
+    preview.skillName.textContent = value(
+      fields.primarySkill,
+      "Web Development"
+    );
+
+    preview.skillLevel.textContent = value(
+      fields.skillLevel,
+      "Developing"
+    );
+
+    preview.skills.innerHTML = "";
+
+    const skills = value(fields.additionalSkills, "")
+      .split(",")
+      .map(skill => skill.trim())
+      .filter(Boolean);
+
+    skills.forEach(skill => {
+      const badge = document.createElement("span");
+      badge.className =
+        "rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700";
+      badge.textContent = skill;
+      preview.skills.appendChild(badge);
+    });
+
+    const referenceName = value(fields.referenceName, "");
+    const relationship = value(fields.relationship, "");
+    const referenceEmail = value(fields.referenceEmail, "");
+    const referencePhone = value(fields.referencePhone, "");
+
+    if (!referenceName && !relationship && !referenceEmail && !referencePhone) {
+      preview.referenceSection.classList.add("hidden");
+    } else {
+      preview.referenceSection.classList.remove("hidden");
+
+      preview.referenceName.textContent =
+        referenceName || "Professional Reference";
+
+      preview.referenceRelationship.textContent =
+        relationship || "Professional reference";
+
+      preview.referenceEmail.textContent = referenceEmail;
+      preview.referencePhone.textContent = referencePhone;
+    }
+  }
+
+  Object.values(fields).forEach(field => {
+    if (!field || field === fields.photo) return;
+
+    field.addEventListener("input", updatePreview);
+    field.addEventListener("change", updatePreview);
+  });
+
+  if (fields.photo) {
+    fields.photo.addEventListener("change", function () {
+
+      const file = this.files && this.files[0];
+
+      const wrap = get("preview-photo-wrap");
+      const image = get("preview-photo");
+
+      const builderWrap = get("builder-profile-photo-wrap");
+      const builderImage = get("builder-profile-photo");
+
+      if (!file) {
+        wrap.classList.add("hidden");
+        image.removeAttribute("src");
+
+        if (builderWrap && builderImage) {
+          builderWrap.classList.add("hidden");
+          builderImage.removeAttribute("src");
+        }
+
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        image.src = event.target.result;
+        wrap.classList.remove("hidden");
+
+        if (builderWrap && builderImage) {
+          builderImage.src = event.target.result;
+          builderWrap.classList.remove("hidden");
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
+  }
+
+  const downloadButton = get("download-resume");
+
+  if (downloadButton) {
+    downloadButton.addEventListener("click", function () {
+
+      const previewElement = get("resume-preview");
+
+      if (!previewElement) return;
+
+      window.print();
+    });
+  }
+
+  updatePreview();
+
+
+});
+</script>
+
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+    }
+
+    input[type="file"]::file-selector-button {
+      border: 0;
+      background: #eef2ff;
+      color: #4338ca;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+
+    /* Professional CV print layout */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      body {
+        background: white !important;
+      }
+
+      body > header,
+      body > div.border-b,
+      form > section:not(#resume-preview-container),
+      #download-section,
+      #download-resume {
+        display: none !important;
+      }
+
+      main {
+        max-width: none !important;
+        padding: 0 !important;
+      }
+
+      #resume-preview {
+        display: block !important;
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+
+      #resume-preview,
+      #resume-preview * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .resume-paper {
+        box-shadow: none !important;
+      }
+
+      /* A4 print optimization */
+      #resume-preview {
+        font-size: 11px !important;
+        line-height: 1.45 !important;
+      }
+
+      #resume-preview h1 {
+        font-size: 24px !important;
+        line-height: 1.1 !important;
+      }
+
+      #resume-preview h2 {
+        font-size: 14px !important;
+      }
+
+      #resume-preview h3 {
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+      }
+
+      #resume-preview h4 {
+        font-size: 12px !important;
+        line-height: 1.25 !important;
+      }
+
+      #resume-preview p,
+      #resume-preview li {
+        line-height: 1.45 !important;
+      }
+
+      #resume-preview section {
+        break-inside: auto;
+      }
+
+      #resume-preview article {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      #resume-preview .border-l-4 {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      #preview-reference-section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-900">
+
+  <!-- PERSONAL RESUME HEADER -->
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto max-w-5xl px-5 py-8 sm:px-6 sm:py-10 lg:px-8">
+
+      <div class="mt-8 border-t border-slate-100 pt-8">
+
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+
+          <!-- Profile photo -->
+          <div
+            id="builder-profile-photo-wrap"
+            class="hidden h-28 w-28 shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm sm:h-32 sm:w-32"
+          >
+            <img
+              id="builder-profile-photo"
+              src=""
+              alt="Joefel Mal-ang Lato profile photo"
+              class="h-full w-full object-cover"
+            >
+          </div>
+
+          <div class="min-w-0">
+
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-indigo-600">
+              Professional Resume
+            </p>
+
+            <h1
+              class="mt-2 text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl"
+            >
+              Joefel Mal-ang Lato
+            </h1>
+
+            <p class="mt-2 text-base font-semibold text-slate-700">
+              Programmer / Web Developer
+            </p>
+
+            <div class="mt-4 flex flex-col gap-1.5 text-sm text-slate-500 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-1">
+              <span>Cebu, Philippines</span>
+              <span class="hidden sm:inline text-slate-300">•</span>
+              <span>09610414212</span>
+              <span class="hidden sm:inline text-slate-300">•</span>
+              <span class="break-all">joefellato215@gmail.com</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="mt-7 max-w-3xl border-l-4 border-indigo-600 pl-4">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">
+          Professional Profile
+        </p>
+
+        <p class="mt-2 text-sm leading-7 text-slate-600">
+          Programmer and Web Developer with a strong interest in building
+          practical, responsive, and user-focused websites and web
+          applications. Experienced in developing modern web interfaces,
+          working with programming technologies, and turning ideas into
+          functional digital solutions.
+        </p>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- PROGRESS -->
+  <div class="border-b border-slate-200 bg-white">
+
+    <div class="mx-auto max-w-5xl overflow-x-auto px-5 sm:px-6 lg:px-8">
+
+      <nav
+        class="flex min-w-max items-center gap-2 py-4"
+        aria-label="Resume sections"
+      >
+
+        <a
+          href="#personal"
+          class="rounded-full bg-indigo-600 px-4 py-2 text-xs font-semibold text-white"
+        >
+          01 Profile
+        </a>
+
+        <span class="text-slate-300">→</span>
+
+        <a
+          href="#education"
+          class="rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-200"
+        >
+          02 Education
+        </a>
+
+        <span class="text-slate-300">→</span>
+
+        <a
+          href="#experience"
+          class="rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-200"
+        >
+          03 Projects
+        </a>
+
+        <span class="text-slate-300">→</span>
+
+        <a
+          href="#skills"
+          class="rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-200"
+        >
+          04 Skills
+        </a>
+
+        <span class="text-slate-300">→</span>
+
+        <a
+          href="#references"
+          class="rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-200"
+        >
+          05 References
+        </a>
+
+        <span class="text-slate-300">→</span>
+
+        <a
+          href="#resume-preview"
+          class="rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-200"
+        >
+          06 Preview
+        </a>
+
+        <span class="text-slate-300">→</span>
+
+        <a
+          href="#download-resume"
+          class="rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-200"
+        >
+          07 Download
+        </a>
+
+      </nav>
+
+    </div>
+
+  </div>
+
+
+  <!-- MAIN -->
+  <main class="mx-auto max-w-5xl px-5 py-8 sm:px-6 sm:py-12 lg:px-8">
+
+    <form
+      action="#"
+      method="post"
+      enctype="multipart/form-data"
+      class="space-y-6"
+    >
+
+
+      <!-- PERSONAL -->
+      <section
+        id="personal"
+        class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+      >
+
+        <div class="mb-7 flex items-start gap-4">
+
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-sm font-bold text-indigo-600"
+          >
+            01
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-950">
+              Profile Details
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Update your name and contact information.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="grid gap-5 sm:grid-cols-2">
+
+          <!-- First name -->
+          <div>
+            <label
+              for="first-name"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              First Name
+            </label>
+
+            <input
+              id="first-name"
+              name="first_name"
+              type="text"
+              autocomplete="given-name"
+              value="Joefel"
+              placeholder="Juan"
+              required
+              class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <!-- Middle name -->
+          <div>
+            <label
+              for="middle-name"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Middle Name
+            </label>
+
+            <input
+              id="middle-name"
+              name="middle_name"
+              type="text"
+              autocomplete="additional-name"
+              value="Mal-ang"
+              placeholder="Middle name"
+              class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <!-- Last name -->
+          <div>
+            <label
+              for="last-name"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Last Name
+            </label>
+
+            <input
+              id="last-name"
+              name="last_name"
+              type="text"
+              autocomplete="family-name"
+              value="Lato"
+              placeholder="Dela Cruz"
+              required
+              class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <!-- Email -->
+          <div>
+            <label
+              for="email"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Email Address
+            </label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              value="joefellato215@gmail.com"
+              placeholder="you@example.com"
+              required
+              class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <!-- Phone -->
+          <div>
+            <label
+              for="phone"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Phone Number
+            </label>
+
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              value="09610414212"
+              placeholder="+63 912 345 6789"
+              class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <!-- Location -->
+          <div class="sm:col-span-2">
+            <label
+              for="location"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Location
+            </label>
+
+            <input
+              id="location"
+              name="location"
+              type="text"
+              autocomplete="address-level2"
+              value="Cebu, Philippines"
+              placeholder="City, Province, Country"
+              class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+
+          <!-- Summary -->
+          <div class="sm:col-span-2">
+            <label
+              for="summary"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Professional Summary
+            </label>
+
+            <textarea
+              id="summary"
+              name="summary"
+              rows="5"
+              placeholder="Write a short professional introduction..."
+              class="w-full resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >Programmer and Web Developer with a strong interest in building practical, responsive, and user-focused websites and web applications. Experienced in developing modern web interfaces, working with programming technologies, and turning ideas into functional digital solutions. Passionate about continuous learning, problem-solving, and using technology to create useful products and improve real-world processes.</textarea>
+
+            <p class="mt-2 text-xs text-slate-400">
+              Recommended: 2–4 sentences.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- EDUCATION -->
+      <section
+        id="education"
+        class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+      >
+
+        <div class="mb-7 flex items-start gap-4">
+
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-sm font-bold text-indigo-600"
+          >
+            02
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-950">
+              Education
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Add your academic background.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="grid gap-5 sm:grid-cols-2">
+
+          <div>
+            <label
+              for="school"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              School / University
+            </label>
+
+            <input
+              id="school"
+              name="school"
+              type="text"
+              value="Colegio De San Antonio De Padua (CSAP)" placeholder="University or school name"
+              required
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <div>
+            <label
+              for="degree"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Degree / Qualification
+            </label>
+
+            <input
+              id="degree"
+              name="degree"
+              type="text"
+              value="Computer Engineering — Undergraduate" placeholder="Bachelor's Degree"
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <div>
+            <label
+              for="field"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Field of Study
+            </label>
+
+            <input
+              id="field"
+              name="field"
+              type="text"
+              value="Computer Engineering" placeholder="Computer Science"
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <div>
+            <label
+              for="graduation"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Education Status
+            </label>
+
+            <select
+              id="graduation"
+              name="graduation_year"
+              class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+              <option value="">Select status</option>
+              <option value="undergraduate" selected>Undergraduate — Degree Not Completed</option>
+              <option value="coursework-completed">Coursework Completed</option>
+              <option value="currently-studying">Currently Studying</option>
+              <option value="degree-completed">Degree Completed</option>
+              <option>2026</option>
+              <option>2025</option>
+              <option>2024</option>
+              <option>2023</option>
+              <option>2022</option>
+              <option>2021</option>
+              <option>2020</option>
+              <option>2019</option>
+              <option>2018</option>
+              <option>2017</option>
+              <option>2016</option>
+              <option>2015</option>
+              <option>2014</option>
+              <option>2013</option>
+              <option>2012</option>
+              <option>2011</option>
+              <option>2010</option>
+            </select>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- EXPERIENCE -->
+      <section
+        id="experience"
+        class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+      >
+
+        <div class="mb-7 flex items-start gap-4">
+
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-sm font-bold text-indigo-600"
+          >
+            03
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-950">
+              Projects & Practical Experience
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Showcase your projects, practical development work, and technical experience.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="grid gap-5 sm:grid-cols-2">
+
+          <div>
+            <label
+              for="job-title"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Project / Role
+            </label>
+
+            <input
+              id="job-title"
+              name="job_title"
+              type="text"
+              placeholder="e.g. Full-Stack Web Developer"
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <div>
+            <label
+              for="company"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Project / Organization
+            </label>
+
+            <input
+              id="company"
+              name="company"
+              type="text"
+              placeholder="e.g. Personal Project, Client, or Organization"
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <div class="sm:col-span-2">
+
+            <label
+              for="experience"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Project Description & Achievements
+            </label>
+
+            <textarea
+              id="experience"
+              name="experience"
+              rows="6"
+              placeholder="Describe the project, technologies used, features built, your contributions, and key results..."
+              class="w-full resize-y rounded-xl border border-slate-200 px-4 py-3 text-sm leading-6 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >No formal professional work experience yet.
+
+Currently building practical programming and web-development projects to develop technical skills and hands-on experience.</textarea>
+
+
+          <!-- PROJECT EXPERIENCE SUGGESTIONS -->
+          <div
+            id="project-examples"
+            class="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50/50 p-5"
+          >
+
+            <div class="mb-4">
+              <h3 class="text-sm font-bold text-slate-900">
+                Suggested Project Experience
+              </h3>
+
+              <p class="mt-1 text-xs leading-5 text-slate-500">
+                Use real projects to demonstrate your practical programming
+                and web-development experience.
+              </p>
+            </div>
+
+
+            <div class="grid gap-3">
+
+              <!-- Prometheus Market -->
+              <div class="rounded-xl border border-slate-200 bg-white p-4">
+                <p class="text-sm font-bold text-slate-900">
+                  Prometheus Market
+                </p>
+
+                <p class="mt-1 text-xs font-semibold text-indigo-600">
+                  E-commerce / Full-Stack Web Application
+                </p>
+
+                <p class="mt-2 text-xs leading-5 text-slate-500">
+                  Developed a modern e-commerce platform with product
+                  management, inventory intelligence, order management,
+                  customer features, analytics, and responsive web interfaces.
+                </p>
+              </div>
+
+
+              <!-- Miguel Lechon -->
+              <div class="rounded-xl border border-slate-200 bg-white p-4">
+                <p class="text-sm font-bold text-slate-900">
+                  Miguel Lechon
+                </p>
+
+                <p class="mt-1 text-xs font-semibold text-indigo-600">
+                  Business Website / Web Application
+                </p>
+
+                <p class="mt-2 text-xs leading-5 text-slate-500">
+                  Built a responsive business website focused on presenting
+                  products, services, and information through a professional
+                  digital experience.
+                </p>
+              </div>
+
+
+              <!-- Oculus AI -->
+              <div class="rounded-xl border border-slate-200 bg-white p-4">
+                <p class="text-sm font-bold text-slate-900">
+                  Oculus AI
+                </p>
+
+                <p class="mt-1 text-xs font-semibold text-indigo-600">
+                  AI Assistant / Python Project
+                </p>
+
+                <p class="mt-2 text-xs leading-5 text-slate-500">
+                  Developed an AI assistant project using Python with a focus
+                  on automation, voice interaction, tools, and intelligent
+                  workflows.
+                </p>
+              </div>
+
+
+              <!-- Personal Portfolio -->
+              <div class="rounded-xl border border-slate-200 bg-white p-4">
+                <p class="text-sm font-bold text-slate-900">
+                  Personal Portfolio
+                </p>
+
+                <p class="mt-1 text-xs font-semibold text-indigo-600">
+                  Responsive Web Development
+                </p>
+
+                <p class="mt-2 text-xs leading-5 text-slate-500">
+                  Designed and developed a responsive personal portfolio
+                  showcasing programming, web-development, and project work.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SKILLS -->
+      <section
+        id="skills"
+        class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+      >
+
+        <div class="mb-7 flex items-start gap-4">
+
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-sm font-bold text-indigo-600"
+          >
+            04
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-950">
+              Skills
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Highlight your strongest professional skills.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="grid gap-5 sm:grid-cols-2">
+
+          <div>
+            <label
+              for="primary-skill"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Primary Skill
+            </label>
+
+            <input
+              id="primary-skill"
+              name="primary_skill"
+              type="text"
+              value="Web Development" placeholder="JavaScript"
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <div>
+            <label
+              for="skill-level"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Skill Level
+            </label>
+
+            <select
+              id="skill-level"
+              name="skill_level"
+              class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+              <option value="">Select level</option>
+              <option selected>Developing</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+          </div>
+
+
+          <div class="sm:col-span-2">
+
+            <label
+              for="additional-skills"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Additional Skills
+            </label>
+
+            <textarea
+              id="additional-skills"
+              name="additional_skills"
+              rows="4"
+              placeholder="HTML, CSS, Python, Flask, Git, UI Design..."
+              class="w-full resize-y rounded-xl border border-slate-200 px-4 py-3 text-sm leading-6 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >HTML5, CSS3, JavaScript, Python, Flask, Git, GitHub, Responsive Web Design, UI/UX Design, REST APIs, SQLite, Web Application Development</textarea>
+
+            <p class="mt-2 text-xs text-slate-400">
+              Separate skills with commas.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- REFERENCES -->
+      <section
+        id="references"
+        class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+      >
+
+        <div class="mb-7 flex items-start gap-4">
+
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-sm font-bold text-indigo-600"
+          >
+            05
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-950">
+              References
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Provide a professional reference.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="grid gap-5 sm:grid-cols-2">
+
+          <div>
+            <label
+              for="reference-name"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Reference Name
+            </label>
+
+            <input
+              id="reference-name"
+              name="reference_name"
+              type="text"
+              placeholder="Full name"
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <div>
+            <label
+              for="relationship"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Relationship
+            </label>
+
+            <input
+              id="relationship"
+              name="relationship"
+              type="text"
+              placeholder="Former Manager"
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <div>
+            <label
+              for="reference-email"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Email Address
+            </label>
+
+            <input
+              id="reference-email"
+              name="reference_email"
+              type="email"
+              placeholder="reference@example.com"
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+
+          <div>
+            <label
+              for="reference-phone"
+              class="mb-2 block text-sm font-semibold text-slate-700"
+            >
+              Phone Number
+            </label>
+
+            <input
+              id="reference-phone"
+              name="reference_phone"
+              type="tel"
+              placeholder="+63 912 345 6789"
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+            >
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PREVIEW -->
+      <section
+        id="preview"
+        class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+       id="resume-preview-container">
+
+        <div class="mb-7 flex items-start gap-4">
+
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-sm font-bold text-indigo-600"
+          >
+            06
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-950">
+              Live Resume Preview
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Review your resume as you complete the form.
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- Resume Preview -->
+        <div
+          id="resume-preview"
+          class="resume-paper overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg"
+        >
+
+          <!-- CV HEADER -->
+          <header class="border-b-4 border-indigo-600 bg-slate-950 px-6 py-8 text-white sm:px-10 sm:py-9">
+
+            <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+
+              <div
+                id="preview-photo-wrap"
+                class="hidden h-28 w-28 shrink-0 overflow-hidden rounded-full border-4 border-white/20 bg-white/10 shadow-lg"
+              >
+                <img
+                  id="preview-photo"
+                  src=""
+                  alt="Profile photo"
+                  class="h-full w-full object-cover"
+                >
+              </div>
+
+              <div class="min-w-0 flex-1">
+
+                <p
+                  id="preview-name"
+                  class="text-3xl font-extrabold tracking-tight sm:text-4xl"
+                >
+                  Joefel Mal-ang Lato
+                </p>
+
+                <p
+                  id="preview-title"
+                  class="mt-2 text-base font-semibold text-indigo-300 sm:text-lg"
+                >
+                  Web Developer
+                </p>
+
+                <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-300 sm:text-sm">
+                  <span id="preview-email">joefellato215@gmail.com</span>
+                  <span id="preview-phone">09610414212</span>
+                  <span id="preview-location">Cebu, Philippines</span>
+                </div>
+
+              </div>
+
+            </div>
+
+          </header>
+
+
+          <!-- CV BODY -->
+          <div class="grid gap-8 px-6 py-8 sm:px-10 sm:py-9 lg:grid-cols-[1.75fr_1fr]">
+
+            <!-- MAIN COLUMN -->
+            <main class="space-y-8">
+
+              <!-- PROFILE -->
+              <section>
+
+                <div class="mb-3 flex items-center gap-3">
+                  <span class="h-px flex-1 bg-slate-200"></span>
+
+                  <h3 class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">
+                    Profile
+                  </h3>
+
+                  <span class="h-px flex-1 bg-slate-200"></span>
+                </div>
+
+                <p
+                  id="preview-summary"
+                  class="whitespace-pre-line text-sm leading-7 text-slate-600"
+                >
+                  Programmer and Web Developer with a strong interest in building practical, responsive, and user-focused websites and web applications.
+                </p>
+
+              </section>
+
+
+              <!-- EXPERIENCE & PROJECTS -->
+              <section>
+
+                <div class="mb-4 flex items-center gap-3">
+                  <span class="h-px flex-1 bg-slate-200"></span>
+
+                  <h3 class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">
+                    Projects &amp; Practical Experience
+                  </h3>
+
+                  <span class="h-px flex-1 bg-slate-200"></span>
+                </div>
+
+                <div
+                  id="preview-experience"
+                  class="space-y-6"
+                >
+
+                  <!-- PROMETHEUS MARKET -->
+                  <article class="relative border-l-2 border-indigo-200 pl-5">
+                    <div class="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-indigo-600 ring-4 ring-white"></div>
+
+                    <div class="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <h4 class="text-base font-extrabold text-slate-900">
+                          Prometheus Market
+                        </h4>
+
+                        <p class="text-sm font-semibold text-indigo-600">
+                          E-commerce / Full-Stack Web Application
+                        </p>
+                      </div>
+                    </div>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-600">
+                      Developed a modern e-commerce platform with product management,
+                      inventory intelligence, order management, customer features,
+                      analytics, and responsive web interfaces.
+                    </p>
+
+                    <p class="mt-2 text-xs leading-5 text-slate-500">
+                      <span class="font-bold text-slate-700">Technologies:</span>
+                      HTML5, CSS3, JavaScript, Python, Flask, SQLite
+                    </p>
+
+                    <ul class="mt-2 space-y-1 text-xs leading-5 text-slate-500">
+                      <li class="flex gap-2">
+                        <span class="font-bold text-indigo-500">•</span>
+                        <span>Built responsive customer-facing commerce interfaces.</span>
+                      </li>
+                      <li class="flex gap-2">
+                        <span class="font-bold text-indigo-500">•</span>
+                        <span>Implemented inventory, order, customer, and analytics workflows.</span>
+                      </li>
+                    </ul>
+                  </article>
+
+
+                  <!-- MIGUEL LECHON -->
+                  <article class="relative border-l-2 border-slate-200 pl-5">
+                    <div class="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-slate-400 ring-4 ring-white"></div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                      Miguel Lechon
+                    </h4>
+
+                    <p class="text-sm font-semibold text-indigo-600">
+                      Business Website / Web Application
+                    </p>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-600">
+                      Built a responsive business website focused on presenting
+                      products, services, and information through a professional
+                      digital experience.
+                    </p>
+
+                    <p class="mt-2 text-xs leading-5 text-slate-500">
+                      <span class="font-bold text-slate-700">Technologies:</span>
+                      HTML5, CSS3, JavaScript, Responsive Web Design
+                    </p>
+
+                    <ul class="mt-2 space-y-1 text-xs leading-5 text-slate-500">
+                      <li class="flex gap-2">
+                        <span class="font-bold text-slate-400">•</span>
+                        <span>Created a mobile-friendly layout for business content and services.</span>
+                      </li>
+                      <li class="flex gap-2">
+                        <span class="font-bold text-slate-400">•</span>
+                        <span>Focused on clear presentation, usability, and responsive design.</span>
+                      </li>
+                    </ul>
+                  </article>
+
+
+                  <!-- OCULUS AI -->
+                  <article class="relative border-l-2 border-slate-200 pl-5">
+                    <div class="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-slate-400 ring-4 ring-white"></div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                      Oculus AI
+                    </h4>
+
+                    <p class="text-sm font-semibold text-indigo-600">
+                      AI Assistant / Python Project
+                    </p>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-600">
+                      Developed an AI assistant project using Python with a focus on
+                      automation, voice interaction, tools, and intelligent workflows.
+                    </p>
+
+                    <p class="mt-2 text-xs leading-5 text-slate-500">
+                      <span class="font-bold text-slate-700">Technologies:</span>
+                      Python, Flask, AI Tools, Automation
+                    </p>
+
+                    <ul class="mt-2 space-y-1 text-xs leading-5 text-slate-500">
+                      <li class="flex gap-2">
+                        <span class="font-bold text-slate-400">•</span>
+                        <span>Developed Python-based assistant functionality and automation workflows.</span>
+                      </li>
+                      <li class="flex gap-2">
+                        <span class="font-bold text-slate-400">•</span>
+                        <span>Explored voice interaction and tool-based intelligent workflows.</span>
+                      </li>
+                    </ul>
+                  </article>
+
+
+                  <!-- PERSONAL PORTFOLIO -->
+                  <article class="relative border-l-2 border-slate-200 pl-5">
+                    <div class="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-slate-400 ring-4 ring-white"></div>
+
+                    <h4 class="text-base font-extrabold text-slate-900">
+                      Personal Portfolio
+                    </h4>
+
+                    <p class="text-sm font-semibold text-indigo-600">
+                      Responsive Web Development
+                    </p>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-600">
+                      Designed and developed a responsive personal portfolio
+                      showcasing programming, web-development, and project work.
+                    </p>
+
+                    <p class="mt-2 text-xs leading-5 text-slate-500">
+                      <span class="font-bold text-slate-700">Technologies:</span>
+                      HTML5, CSS3, JavaScript, Responsive Web Design
+                    </p>
+
+                    <ul class="mt-2 space-y-1 text-xs leading-5 text-slate-500">
+                      <li class="flex gap-2">
+                        <span class="font-bold text-slate-400">•</span>
+                        <span>Created a responsive portfolio to present technical projects and skills.</span>
+                      </li>
+                      <li class="flex gap-2">
+                        <span class="font-bold text-slate-400">•</span>
+                        <span>Focused on clean navigation, presentation, and mobile usability.</span>
+                      </li>
+                    </ul>
+                  </article>
+
+                </div>
+
+              </section>
+
+
+              <!-- EDUCATION -->
+              <section>
+
+                <div class="mb-4 flex items-center gap-3">
+                  <span class="h-px flex-1 bg-slate-200"></span>
+
+                  <h3 class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">
+                    Education
+                  </h3>
+
+                  <span class="h-px flex-1 bg-slate-200"></span>
+                </div>
+
+                <div class="border-l-4 border-indigo-100 pl-5">
+
+                  <p
+                    id="preview-school"
+                    class="text-base font-extrabold text-slate-900"
+                  >
+                    Colegio De San Antonio De Padua (CSAP)
+                  </p>
+
+                  <p
+                    id="preview-degree"
+                    class="mt-1 text-sm font-semibold text-slate-700"
+                  >
+                    Computer Engineering — Undergraduate
+                  </p>
+
+                  <p
+                    id="preview-field"
+                    class="mt-1 text-xs leading-5 text-slate-500"
+                  >
+                    Computer Engineering · Undergraduate — Degree Not Completed
+                  </p>
+
+                </div>
+
+              </section>
+
+            </main>
+
+
+            <!-- SIDEBAR -->
+            <aside class="space-y-8 lg:border-l lg:border-slate-200 lg:pl-7">
+
+              <!-- SKILLS -->
+              <section>
+
+                <div class="mb-4 flex items-center gap-3">
+                  <span class="h-px flex-1 bg-slate-200"></span>
+
+                  <h3 class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">
+                    Skills
+                  </h3>
+
+                  <span class="h-px flex-1 bg-slate-200"></span>
+                </div>
+
+                <div>
+
+                  <p
+                    id="preview-skill-name"
+                    class="text-base font-extrabold text-slate-900"
+                  >
+                    Web Development
+                  </p>
+
+                  <p
+                    id="preview-skill-level"
+                    class="mt-1 text-xs font-semibold text-slate-500"
+                  >
+                    Developing
+                  </p>
+
+                  <div
+                    id="preview-skills"
+                    class="mt-4 flex flex-wrap gap-2"
+                  ></div>
+
+                </div>
+
+              </section>
+
+
+              <!-- REFERENCES -->
+              <section id="preview-reference-section">
+
+                <div class="mb-4 flex items-center gap-3">
+                  <span class="h-px flex-1 bg-slate-200"></span>
+
+                  <h3 class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">
+                    Reference
+                  </h3>
+
+                  <span class="h-px flex-1 bg-slate-200"></span>
+                </div>
+
+                <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm">
+
+                  <p
+                    id="preview-reference-name"
+                    class="font-bold text-slate-900"
+                  >
+                    Professional Reference
+                  </p>
+
+                  <p
+                    id="preview-reference-relationship"
+                    class="mt-1 text-slate-600"
+                  >
+                    Available upon request
+                  </p>
+
+                  <p
+                    id="preview-reference-email"
+                    class="mt-2 break-all text-xs text-slate-500"
+                  ></p>
+
+                  <p
+                    id="preview-reference-phone"
+                    class="mt-1 text-xs text-slate-500"
+                  ></p>
+
+                </div>
+
+              </section>
+
+            </aside>
+
+          </div>
+
+
+
+        </div>
+
+      </section>
+
+
+      <!-- DOWNLOAD / SUBMIT -->
+      <section
+        id="download-section"
+        class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+      >
+
+        <div class="mb-7 flex items-start gap-4">
+
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-sm font-bold text-indigo-600"
+          >
+            07
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-950">
+              Download Your CV
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Review your information, then download your professional CV.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div
+          class="rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 p-6 text-center"
+        >
+
+          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100 text-xl text-indigo-600">
+            ↓
+          </div>
+
+          <p class="text-sm font-semibold text-slate-700">
+            Your CV is ready
+          </p>
+
+          <p class="mt-1 text-xs leading-5 text-slate-400">
+            Use the live preview above to review your professional CV before downloading.
+          </p>
+
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+
+            <button
+              type="button"
+              id="download-resume"
+              class="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20"
+            >
+              Download Your CV
+            </button>
+
+
+
+          </div>
+
+        </div>
+
+        <p class="mt-6 text-center text-xs leading-5 text-slate-400">
+          By downloading this CV, you confirm that the information provided is accurate.
+        </p>
+
+      </section>
+
+
+</form>
+
+  </main>
+
+
+
+
+
+
+
+
+<script>
+/* ============================================================
+   PERSISTENT PROFILE PHOTO
+   Uses profile-photo.jpg automatically.
+   ============================================================ */
+(function () {
+  const PHOTO_SRC = "profile-photo.jpg";
+
+  function applyProfilePhoto() {
+    const previewPhoto = document.getElementById("preview-photo");
+    const previewWrap = document.getElementById("preview-photo-wrap");
+
+    const builderPhoto = document.getElementById("builder-profile-photo");
+    const builderWrap = document.getElementById("builder-profile-photo-wrap");
+
+    if (previewPhoto) {
+      previewPhoto.src = PHOTO_SRC;
+      previewPhoto.alt = "Joefel Mal-ang Lato profile photo";
+    }
+
+    if (previewWrap) {
+      previewWrap.classList.remove("hidden");
+    }
+
+    if (builderPhoto) {
+      builderPhoto.src = PHOTO_SRC;
+      builderPhoto.alt = "Joefel Mal-ang Lato profile photo";
+    }
+
+    if (builderWrap) {
+      builderWrap.classList.remove("hidden");
+    }
+  }
+
+  function initProfilePhoto() {
+    applyProfilePhoto();
+
+    const images = [
+      document.getElementById("preview-photo"),
+      document.getElementById("builder-profile-photo")
+    ];
+
+    images.forEach(function (image) {
+      if (!image) return;
+
+      image.addEventListener("error", function () {
+        console.error("Unable to load persistent profile photo:", PHOTO_SRC);
+      });
+
+      image.addEventListener("load", function () {
+        console.log("Persistent profile photo loaded successfully.");
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProfilePhoto);
+  } else {
+    initProfilePhoto();
+  }
+})();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
