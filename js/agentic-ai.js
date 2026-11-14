@@ -11,7 +11,7 @@
     return;
   }
 
-  const API_URL = "http://127.0.0.1:8787/api/ai/chat";
+  const API_URL = "https://joefel-portfolio-ai.onrender.com/api/ai/chat";
   const history = [];
 
   function addMessage(text, type) {
