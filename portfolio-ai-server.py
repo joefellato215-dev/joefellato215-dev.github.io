@@ -1,7 +1,18 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import re
 
 app = Flask(__name__)
+CORS(
+    app,
+    resources={
+        r"/api/*": {
+            "origins": ["https://joefellato215-dev.github.io"]
+        }
+    },
+    methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
+)
 
 
 KNOWLEDGE = {
@@ -366,13 +377,6 @@ def agent(question, history=None):
     }
 
 
-@app.after_request
-def cors(response):
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-    response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
-    return response
-
 
 @app.route("/api/ai/health", methods=["GET"])
 def health():
@@ -424,8 +428,10 @@ def chat():
 
 
 if __name__ == "__main__":
+    import os
+
     app.run(
-        host="127.0.0.1",
-        port=8787,
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", "8787")),
         debug=False,
     )
