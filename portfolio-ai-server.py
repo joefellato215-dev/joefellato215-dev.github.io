@@ -226,6 +226,26 @@ def answer_process():
     return "Joefel's development process is:\n" + "\n".join(parts)
 
 
+def get_last_project(history):
+    if not isinstance(history, list):
+        return None
+
+    for item in reversed(history):
+        if not isinstance(item, dict):
+            continue
+
+        content = item.get("content", "")
+        if not isinstance(content, str):
+            continue
+
+        project = find_project(normalize(content))
+
+        if project:
+            return project
+
+    return None
+
+
 def agent(question, history=None):
     q = normalize(question)
 
@@ -243,6 +263,30 @@ def agent(question, history=None):
             "message": project_response(project),
             "intent": "project_lookup",
             "tool": "project_lookup",
+        }
+
+    last_project = get_last_project(history)
+
+    if last_project and contains_any(q, [
+        "tell me more",
+        "more about",
+        "more details",
+        "more detail",
+        "that project",
+        "this project",
+        "that projects",
+        "this projects",
+        "about that",
+        "about this",
+        "what did he build",
+        "what has he built",
+        "what did joefel build",
+        "what has joefel built",
+    ]):
+        return {
+            "message": project_response(last_project),
+            "intent": "project_followup",
+            "tool": "project_context",
         }
 
     if contains_any(q, [
@@ -383,7 +427,7 @@ def health():
     return jsonify({
         "ok": True,
         "agent": "Joefel AI",
-        "version": "2.1-phase2",
+        "version": "2.2-phase2-context",
         "status": "ready",
     })
 
@@ -420,7 +464,7 @@ def chat():
     return jsonify({
         "ok": True,
         "agent": "Joefel AI",
-        "version": "2.1-phase2",
+        "version": "2.2-phase2-context",
         "response": result["message"],
         "intent": result["intent"],
         "tool": result["tool"],

@@ -103,7 +103,7 @@
       console.error("Joefel AI error:", error);
 
       addMessage(
-        "AI diagnostic error: " + (error && error.message ? error.message : String(error)),
+        "I couldn't connect to the portfolio AI backend right now. Please try again in a moment.",
         "assistant"
       );
     } finally {
