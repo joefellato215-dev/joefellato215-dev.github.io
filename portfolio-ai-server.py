@@ -226,6 +226,68 @@ def answer_process():
     return "Joefel's development process is:\n" + "\n".join(parts)
 
 
+def get_project(name):
+    """Return a verified project from portfolio knowledge."""
+    if not isinstance(name, str):
+        return None
+
+    return find_project(name)
+
+
+def get_skills():
+    """Return Joefel's verified skills."""
+    return KNOWLEDGE["skills"]
+
+
+def get_services():
+    """Return Joefel's verified services."""
+    return KNOWLEDGE["services"]
+
+
+def get_process():
+    """Return Joefel's verified development process."""
+    return KNOWLEDGE["process"]
+
+
+def get_contact():
+    """Return Joefel's verified contact information."""
+    return KNOWLEDGE["contact"]
+
+
+def search_portfolio(query):
+    """Search verified portfolio knowledge without inventing information."""
+    q = normalize(query)
+
+    if not q:
+        return []
+
+    results = []
+
+    project = find_project(q)
+    if project:
+        results.append({
+            "type": "project",
+            "name": project["name"],
+            "data": project,
+        })
+
+    for skill in KNOWLEDGE["skills"]:
+        if normalize(skill) in q or q in normalize(skill):
+            results.append({
+                "type": "skill",
+                "name": skill,
+            })
+
+    for service in KNOWLEDGE["services"]:
+        if normalize(service) in q or q in normalize(service):
+            results.append({
+                "type": "service",
+                "name": service,
+            })
+
+    return results
+
+
 def get_last_project(history):
     if not isinstance(history, list):
         return None
@@ -256,15 +318,17 @@ def agent(question, history=None):
             "tool": None,
         }
 
-    project = find_project(q)
+    # Phase 3.0: verified project tool
+    project = get_project(q)
 
     if project:
         return {
             "message": project_response(project),
             "intent": "project_lookup",
-            "tool": "project_lookup",
+            "tool": "get_project",
         }
 
+    # Phase 2.2 conversational project context
     last_project = get_last_project(history)
 
     if last_project and contains_any(q, [
@@ -306,6 +370,29 @@ def agent(question, history=None):
             "tool": "philosophy_lookup",
         }
 
+    # Phase 3.0: verified process tool
+    if contains_any(q, [
+        "process",
+        "how does he work",
+        "how do you work",
+        "how does joefel work",
+        "workflow",
+        "development process",
+        "how do you build",
+    ]):
+        process = get_process()
+        parts = []
+
+        for number, (name, description) in enumerate(process, 1):
+            parts.append(f"{number}. {name}: {description}")
+
+        return {
+            "message": "Joefel's development process is:\n" + "\n".join(parts),
+            "intent": "process_lookup",
+            "tool": "get_process",
+        }
+
+
     if contains_any(q, [
         "who is joefel",
         "who is joefel lato",
@@ -315,16 +402,19 @@ def agent(question, history=None):
         "what does joefel do",
         "what is joefel",
     ]):
+        identity = KNOWLEDGE["identity"]
+
         return {
             "message": (
-                f'{KNOWLEDGE["identity"]["name"]} is a '
-                f'{KNOWLEDGE["identity"]["role"]}. '
-                f'{KNOWLEDGE["identity"]["summary"]}'
+                f'{identity["name"]} is a '
+                f'{identity["role"]}. '
+                f'{identity["summary"]}'
             ),
             "intent": "identity",
             "tool": "identity_lookup",
         }
 
+    # Phase 3.0: verified skills tool
     if contains_any(q, [
         "skill",
         "skills",
@@ -335,12 +425,21 @@ def agent(question, history=None):
         "what can he code",
         "what can joefel code",
     ]):
+        skills = get_skills()
+
         return {
-            "message": answer_skills(),
+            "message": (
+                "Joefel works with "
+                + ", ".join(skills)
+                + ". His main development focus includes responsive design, "
+                  "UI development, e-commerce, AI and automation, and "
+                  "full-stack web development."
+            ),
             "intent": "skills_lookup",
-            "tool": "skills_lookup",
+            "tool": "get_skills",
         }
 
+    # Phase 3.0: verified services tool
     if contains_any(q, [
         "service",
         "services",
@@ -351,27 +450,19 @@ def agent(question, history=None):
         "website",
         "web application",
     ]):
+        services = get_services()
+
         return {
-            "message": answer_services(),
+            "message": (
+                "Joefel can build "
+                + ", ".join(services)
+                + "."
+            ),
             "intent": "services_lookup",
-            "tool": "services_lookup",
+            "tool": "get_services",
         }
 
-    if contains_any(q, [
-        "process",
-        "how does he work",
-        "how do you work",
-        "how does joefel work",
-        "workflow",
-        "development process",
-        "how do you build",
-    ]):
-        return {
-            "message": answer_process(),
-            "intent": "process_lookup",
-            "tool": "process_lookup",
-        }
-
+    # Phase 3.0: verified contact tool
     if contains_any(q, [
         "contact",
         "email",
@@ -381,14 +472,16 @@ def agent(question, history=None):
         "work with joefel",
         "opportunity",
     ]):
+        contact = get_contact()
+
         return {
             "message": (
                 f'You can contact Joefel at '
-                f'{KNOWLEDGE["contact"]["email"]}. '
-                f'{KNOWLEDGE["contact"]["message"]}'
+                f'{contact["email"]}. '
+                f'{contact["message"]}'
             ),
             "intent": "contact",
-            "tool": "contact_lookup",
+            "tool": "get_contact",
         }
 
     if contains_any(q, [
@@ -409,6 +502,21 @@ def agent(question, history=None):
             "tool": "conversation",
         }
 
+    # Phase 3.0: verified portfolio search fallback
+    search_results = search_portfolio(q)
+
+    if search_results:
+        result_names = ", ".join(item["name"] for item in search_results)
+
+        return {
+            "message": (
+                f"I found this relevant portfolio information: "
+                f"{result_names}."
+            ),
+            "intent": "portfolio_search",
+            "tool": "search_portfolio",
+        }
+
     return {
         "message": (
             "I can help you explore Joefel's portfolio. "
@@ -419,7 +527,6 @@ def agent(question, history=None):
         "intent": "fallback",
         "tool": None,
     }
-
 
 
 @app.route("/api/ai/health", methods=["GET"])
