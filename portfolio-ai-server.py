@@ -271,6 +271,22 @@ def search_portfolio(query):
             "data": project,
         })
 
+    # Phase 3.1: cross-project technology retrieval
+    for project in KNOWLEDGE["projects"].values():
+        for technology in project.get("technologies", []):
+            normalized_technology = normalize(technology)
+
+            # Match the complete technology phrase to avoid
+            # short-token false positives such as CSS inside
+            # a query for Tailwind CSS.
+            if normalized_technology and normalized_technology in q:
+                results.append({
+                    "type": "project_technology",
+                    "name": project["name"],
+                    "technology": technology,
+                    "data": project,
+                })
+
     for skill in KNOWLEDGE["skills"]:
         if normalize(skill) in q or q in normalize(skill):
             results.append({
@@ -284,6 +300,25 @@ def search_portfolio(query):
                 "type": "service",
                 "name": service,
             })
+
+    # Prefer the most specific technology phrase when
+    # shorter technologies are contained inside longer ones.
+    technology_matches = [
+        item for item in results
+        if item["type"] == "project_technology"
+    ]
+
+    if technology_matches:
+        max_length = max(
+            len(normalize(item["technology"]))
+            for item in technology_matches
+        )
+
+        results = [
+            item for item in results
+            if item["type"] != "project_technology"
+            or len(normalize(item["technology"])) == max_length
+        ]
 
     return results
 
@@ -506,6 +541,31 @@ def agent(question, history=None):
     search_results = search_portfolio(q)
 
     if search_results:
+        technology_matches = [
+            item for item in search_results
+            if item["type"] == "project_technology"
+        ]
+
+        if technology_matches:
+            technology = technology_matches[0]["technology"]
+            project_names = []
+            seen = set()
+
+            for item in technology_matches:
+                if item["name"] not in seen:
+                    project_names.append(item["name"])
+                    seen.add(item["name"])
+
+            return {
+                "message": (
+                    f"Projects using {technology}: "
+                    + ", ".join(project_names)
+                    + "."
+                ),
+                "intent": "technology_project_search",
+                "tool": "search_portfolio",
+            }
+
         result_names = ", ".join(item["name"] for item in search_results)
 
         return {
