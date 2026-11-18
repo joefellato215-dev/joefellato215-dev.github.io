@@ -868,40 +868,7 @@
 }
 </style>
 
-<style id="portfolio-landing-redesign-v2">
-  #home img {
-    transition: transform 900ms ease, filter 900ms ease;
-  }
 
-  #home:hover > div:first-child img {
-    transform: scale(1.025);
-  }
-
-  @media (max-width: 639px) {
-    #home {
-      min-height: calc(100svh - 4.5rem);
-    }
-
-    #home > div:nth-child(2) {
-      min-height: calc(100svh - 4.5rem);
-    }
-
-    #home h1 {
-      font-size: clamp(3.2rem, 16vw, 5.4rem);
-      line-height: 0.9;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    #home img {
-      transition: none !important;
-    }
-
-    #home:hover > div:first-child img {
-      transform: none;
-    }
-  }
-</style>
 
 <style id="portfolio-carousel">
   /* Carousel behavior and motion */
@@ -930,55 +897,10 @@
     }
   }
 
-  /* Carousel alignment */
-#about-photo-carousel {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 22rem !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    transform: none !important;
-  }
-
-  #about-photo-carousel > div {
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  #about-carousel-track {
-    position: relative !important;
-    left: auto !important;
-    right: auto !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    transform: none !important;
-  }
-
-  #about-photo-carousel .about-carousel-slide {
-    left: 0 !important;
-    right: 0 !important;
-    transform: none !important;
-  }
-
-  @media (max-width: 639px) {
-    #about-photo-carousel {
-      max-width: 20rem !important;
-    }
-
-    #about-carousel-track {
-      width: 9rem !important;
-      height: 9rem !important;
-    }
-
-    #about-carousel-prev {
-      left: -0.5rem !important;
-    }
-
-    #about-carousel-next {
-      right: -0.5rem !important;
-    }
-  }
 </style>
+
+
+
 
 </head>
 
@@ -1064,147 +986,245 @@
     <main>
 
         <!-- Hero -->
-        <section id="home" class="relative min-h-[calc(100svh-4.5rem)] overflow-hidden bg-[#07090f] text-white">
-  <div class="absolute inset-0">
-    <img
-      src="images/mountain-hero.png"
-      alt=""
-      aria-hidden="true"
-      class="absolute inset-0 h-full w-full object-cover object-center"
-    />
-    <div class="absolute inset-0 bg-[#05070d]/55"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-[#05070d]/45 via-[#05070d]/45 to-[#05070d]/95"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-[#05070d]/70 via-transparent to-[#05070d]/55"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(255,98,87,0.10),transparent_30%)]"></div>
-  </div>
 
-  <div class="relative z-10 mx-auto flex min-h-[calc(100svh-4.5rem)] max-w-6xl flex-col items-center justify-center px-6 py-20 text-center sm:py-24">
-    <div class="mb-7 flex items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.28em] text-white/75">
-      <span class="h-px w-8 bg-[#ff6257]"></span>
-      <span>Programmer / Web Developer</span>
-      <span class="h-px w-8 bg-[#ff6257]"></span>
+
+<section id="home" class="overflow-hidden bg-[#080808] text-white">
+
+  <!-- HERO -->
+  <div class="relative h-[360px] overflow-hidden bg-[#080808] sm:h-[430px] lg:h-[500px]">
+
+    <!-- Your photo sits inside the hero, like the reference -->
+    <div class="absolute inset-y-0 right-0 z-0 w-[62%] sm:w-[55%] lg:w-[48%]">
+      <img
+        src="images/joefel-photo-2.jpg"
+        alt="Joefel Mal-ang Lato"
+        class="h-full w-full object-cover object-top opacity-45 sm:opacity-50 lg:opacity-55"
+      >
+      <div class="absolute inset-0 bg-gradient-to-r from-[#080808] via-[#080808]/55 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]/20"></div>
     </div>
 
-    <div
-      id="about-photo-carousel"
-      class="relative mb-7 w-full max-w-sm"
-      aria-label="Joefel project and profile photos"
-    >
-      <div class="relative mx-auto h-36 w-36 sm:h-40 sm:w-40">
-        <div class="absolute -inset-3 rounded-full border border-[#ff6257]/45"></div>
-        <div class="absolute -inset-6 rounded-full border border-white/10"></div>
+    <!-- Subtle gold glow -->
+    <div class="absolute right-[18%] top-[18%] z-0 h-48 w-48 rounded-full bg-amber-400/10 blur-3xl sm:h-64 sm:w-64"></div>
 
-        <div
-          id="about-carousel-track"
-          class="relative h-full w-full overflow-hidden rounded-full border-4 border-white/20 bg-black/20 shadow-2xl shadow-black/50"
-        >
-          <img
-            src="images/profile.jpg"
-            alt="Joefel M. Lato"
-            class="about-carousel-slide absolute inset-0 h-full w-full object-cover object-center opacity-100 transition-opacity duration-500"
-          />
+    <!-- Hero text -->
+    <div class="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-6 sm:px-10 lg:px-12">
 
-          <img
-            src="images/joefel-photo-1.jpg"
-            alt="Joefel M. Lato"
-            class="about-carousel-slide absolute inset-0 h-full w-full object-cover object-center opacity-0 transition-opacity duration-500"
-          />
+      <div class="w-[72%] max-w-2xl sm:w-[65%] lg:w-[58%]">
 
-          <img
-            src="images/joefel-photo-2.jpg"
-            alt="Joefel M. Lato"
-            class="about-carousel-slide absolute inset-0 h-full w-full object-cover object-center opacity-0 transition-opacity duration-500"
-          />
+        <p class="text-xs font-medium text-white/80 sm:text-sm lg:text-base">
+          Hey, I'm Joefel
+        </p>
 
-          <img
-            src="images/prometheus-seal.png"
-            alt="Prometheus Market"
-            class="about-carousel-slide absolute inset-0 h-full w-full object-contain p-6 opacity-0 transition-opacity duration-500"
-          />
+        <h1 class="mt-2 text-[clamp(2.35rem,8vw,5rem)] font-extrabold leading-[0.88] tracking-[-0.045em]">
+          Programmer /
+          <span class="block text-amber-400">Web Developer.</span>
+        </h1>
+
+        <p class="mt-4 max-w-md text-xs leading-5 text-white/60 sm:text-sm sm:leading-6 lg:text-base lg:leading-7">
+          I build websites, web applications, e-commerce platforms,
+          and AI-powered tools with a focus on practical, responsive,
+          and modern digital experiences.
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
+          <a
+            href="#projects"
+            class="inline-flex items-center justify-center rounded-lg bg-amber-400 px-4 py-2 text-xs font-bold text-black transition hover:bg-amber-300 sm:px-5 sm:py-2.5 sm:text-sm"
+          >
+            View My Work
+          </a>
+
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center rounded-lg border border-amber-400 px-4 py-2 text-xs font-bold text-amber-400 transition hover:bg-amber-400 hover:text-black sm:px-5 sm:py-2.5 sm:text-sm"
+          >
+            Hire Me
+          </a>
         </div>
 
-        <button
-          id="about-carousel-prev"
-          type="button"
-          aria-label="Previous image"
-          class="absolute left-[-2.2rem] top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 text-xl text-white backdrop-blur-sm transition hover:border-[#ff6257]/60 hover:bg-black/65"
-        >
-          ‹
-        </button>
-
-        <button
-          id="about-carousel-next"
-          type="button"
-          aria-label="Next image"
-          class="absolute right-[-2.2rem] top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 text-xl text-white backdrop-blur-sm transition hover:border-[#ff6257]/60 hover:bg-black/65"
-        >
-          ›
-        </button>
-      </div>
-
-      <div class="mt-5 flex justify-center gap-2" aria-label="Carousel controls">
-        <button type="button" class="about-carousel-dot h-2 w-2 rounded-full bg-white transition" aria-label="Show image 1"></button>
-        <button type="button" class="about-carousel-dot h-2 w-2 rounded-full bg-white/35 transition" aria-label="Show image 2"></button>
-        <button type="button" class="about-carousel-dot h-2 w-2 rounded-full bg-white/35 transition" aria-label="Show image 3"></button>
-        <button type="button" class="about-carousel-dot h-2 w-2 rounded-full bg-white/35 transition" aria-label="Show image 4"></button>
       </div>
     </div>
 
-    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-white/65">
-      Hello, I'm
-    </p>
+  </div>
 
-    <h1 class="mt-3 text-5xl font-black tracking-[-0.055em] text-white sm:text-6xl lg:text-8xl">
-      Joefel
-      <span class="block text-[#ff6257]">M. Lato</span>
-    </h1>
+  <!-- ABOUT ME -->
+  <div class="border-t border-white/5 bg-[#111111]">
+    <div class="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-20">
 
-    <p class="mt-5 text-sm font-semibold uppercase tracking-[0.18em] text-white/80 sm:text-base">
-      I build websites, web applications, e-commerce platforms, and AI-powered tools.
-    </p>
+      <div class="mb-12 text-center">
+        <span class="text-sm font-bold uppercase tracking-[0.28em] text-amber-400">
+          About Me
+        </span>
 
-    <p class="mt-5 max-w-2xl text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
-      Practical, responsive, and modern digital experiences built with purpose —
-      from business websites to full-stack products and intelligent tools.
-    </p>
+        <div class="mx-auto mt-4 h-px w-32 bg-amber-400/40">
+          <span class="mx-auto block h-2 w-2 -translate-y-1 rounded-sm bg-amber-400"></span>
+        </div>
+      </div>
 
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-      <a
-        href="#projects"
-        class="inline-flex items-center justify-center gap-2 rounded-md bg-[#ff6257] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#ff6257]/20 transition hover:-translate-y-0.5 hover:bg-[#ff746a]"
-      >
-        View My Work
-        <span aria-hidden="true">→</span>
-      </a>
+      <div class="grid items-center gap-10 lg:grid-cols-[minmax(280px,420px)_1fr] lg:gap-14">
 
-      <a
-        href="#contact"
-        class="inline-flex items-center justify-center gap-2 rounded-md border border-white/20 bg-black/20 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[#ff6257]/50 hover:text-[#ff8178]"
-      >
-        Let's Work Together
-      </a>
+        <div class="min-w-0">
+          <div
+            id="about-photo-carousel"
+            class="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl border border-amber-400/30 bg-black shadow-xl sm:max-w-[360px]"
+            aria-label="Joefel profile and project photos"
+          >
+            <div id="about-carousel-track" class="relative h-full w-full">
 
-      <a
-        href="resume/"
-        class="inline-flex items-center justify-center gap-2 rounded-md border border-white/20 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/15"
-      >
-        View My Resume
-        <span aria-hidden="true">↗</span>
-      </a>
-    </div>
+              <img
+                src="images/profile.jpg"
+                alt="Joefel profile"
+                class="about-carousel-slide absolute inset-0 h-full w-full object-cover object-center opacity-100 transition-opacity duration-500"
+              >
 
-    <div class="mt-10 flex items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-white/45">
-      <span>Build</span>
-      <span class="h-1 w-1 rounded-full bg-[#ff6257]"></span>
-      <span>Learn</span>
-      <span class="h-1 w-1 rounded-full bg-[#ff6257]"></span>
-      <span>Improve</span>
+              <img
+                src="images/joefel-photo-1.jpg"
+                alt="Joefel outdoors"
+                class="about-carousel-slide absolute inset-0 h-full w-full object-cover object-center opacity-0 transition-opacity duration-500"
+              >
+
+              <img
+                src="images/joefel-photo-2.jpg"
+                alt="Joefel portrait"
+                class="about-carousel-slide absolute inset-0 h-full w-full object-cover object-center opacity-0 transition-opacity duration-500"
+              >
+
+              <img
+                src="images/prometheus-seal.png"
+                alt="Prometheus Market"
+                class="about-carousel-slide absolute inset-0 h-full w-full object-contain p-8 opacity-0 transition-opacity duration-500"
+              >
+
+              <button
+                type="button"
+                id="about-carousel-prev"
+                class="absolute left-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/75 text-white"
+                aria-label="Previous image"
+              >←</button>
+
+              <button
+                type="button"
+                id="about-carousel-next"
+                class="absolute right-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/75 text-white"
+                aria-label="Next image"
+              >→</button>
+
+              <div class="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-1.5">
+                <button type="button" class="about-carousel-dot h-1.5 w-1.5 rounded-full bg-white" aria-label="Show image 1"></button>
+                <button type="button" class="about-carousel-dot h-1.5 w-1.5 rounded-full bg-white/35" aria-label="Show image 2"></button>
+                <button type="button" class="about-carousel-dot h-1.5 w-1.5 rounded-full bg-white/35" aria-label="Show image 3"></button>
+                <button type="button" class="about-carousel-dot h-1.5 w-1.5 rounded-full bg-white/35" aria-label="Show image 4"></button>
+              </div>
+
+            </div>
+          </div>
+
+          <p class="mt-3 text-center text-[10px] font-bold uppercase tracking-[0.25em] text-white/35">
+            Profile & Selected Work
+          </p>
+        </div>
+
+        <div class="min-w-0">
+
+          <p class="text-lg font-bold text-white">
+            Hello! I'm Joefel Lato
+          </p>
+
+          <div class="mt-3 h-1 w-24 rounded-full bg-amber-400"></div>
+
+          <h2 class="mt-6 text-2xl font-bold leading-tight sm:text-3xl">
+            Programmer / Web Developer focused on practical digital products.
+          </h2>
+
+          <p class="mt-5 text-base leading-7 text-white/60 sm:text-lg">
+            I design and develop modern, responsive web experiences.
+            I enjoy turning ideas into clean interfaces and functional
+            products that solve real problems.
+          </p>
+
+          <p class="mt-4 text-base leading-7 text-white/60 sm:text-lg">
+            From websites and e-commerce platforms to AI-powered tools,
+            I build with purpose, focusing on usability, performance,
+            automation, and continuous improvement.
+          </p>
+
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#about"
+              class="inline-flex items-center justify-center rounded-xl bg-amber-400 px-6 py-3 font-bold text-black transition hover:bg-amber-300"
+            >
+              More About Me
+            </a>
+
+            <a
+              href="resume/"
+              class="inline-flex items-center justify-center rounded-xl border border-amber-400 px-6 py-3 font-bold text-amber-400 transition hover:bg-amber-400 hover:text-black"
+            >
+              View Resume
+            </a>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- SERVICES PREVIEW -->
+  <div class="border-t border-white/5 bg-[#090909]">
+    <div class="mx-auto w-full max-w-7xl px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+
+      <div class="mb-12 text-center">
+        <span class="text-sm font-bold uppercase tracking-[0.28em] text-amber-400">
+          My Services
+        </span>
+
+        <div class="mx-auto mt-4 h-px w-32 bg-amber-400/40">
+          <span class="mx-auto block h-2 w-2 -translate-y-1 rounded-sm bg-amber-400"></span>
+        </div>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-1 hover:border-amber-400/50">
+          <div class="text-3xl text-amber-400">01</div>
+          <h3 class="mt-5 text-lg font-bold">Web Development</h3>
+          <p class="mt-3 text-sm leading-6 text-white/55">
+            Responsive websites and web applications built around real requirements.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-1 hover:border-amber-400/50">
+          <div class="text-3xl text-amber-400">02</div>
+          <h3 class="mt-5 text-lg font-bold">E-Commerce</h3>
+          <p class="mt-3 text-sm leading-6 text-white/55">
+            Practical online stores with products, carts, orders, and business workflows.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-1 hover:border-amber-400/50">
+          <div class="text-3xl text-amber-400">03</div>
+          <h3 class="mt-5 text-lg font-bold">UI Development</h3>
+          <p class="mt-3 text-sm leading-6 text-white/55">
+            Clean, responsive interfaces designed for clarity, usability, and mobile screens.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-1 hover:border-amber-400/50">
+          <div class="text-3xl text-amber-400">04</div>
+          <h3 class="mt-5 text-lg font-bold">AI & Automation</h3>
+          <p class="mt-3 text-sm leading-6 text-white/55">
+            AI-assisted tools and automation experiments that turn ideas into useful systems.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </section>
 
-        <!-- Personal Philosophy -->
-    <section id="philosophy" class="relative py-20 sm:py-28 overflow-hidden">
+<section id="philosophy" class="relative py-20 sm:py-28 overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-b from-indigo-500/[0.03] via-transparent to-transparent dark:from-indigo-500/[0.06]"></div>
 
       <div class="relative max-w-4xl mx-auto px-6 sm:px-8 text-center">
