@@ -88,6 +88,13 @@
 
       const assistantMessage = data.response;
 
+      if (typeof gtag === "function") {
+        gtag("event", "ai_message_sent", {
+          event_category: "engagement",
+          event_label: "Joefel AI"
+        });
+      }
+
       history.push({
         role: "user",
         content: trimmed,
