@@ -212,14 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (downloadButton) {
     downloadButton.addEventListener("click", function () {
-      const link = document.createElement("a");
-
-      link.href = "Joefel-Mal-ang-Lato-Resume.pdf";
-      link.download = "Joefel-Mal-ang-Lato-Resume.pdf";
-
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
+      window.open("Joefel-Mal-ang-Lato-Resume.pdf", "_blank");
     });
   }
 
@@ -272,6 +265,361 @@ document.addEventListener("DOMContentLoaded", function () {
       font-weight: 600;
       margin-right: 12px;
       cursor: pointer;
+    }
+
+    /* Editorial CV redesign */
+    #resume-preview {
+      --cv-ink: #2f2a25;
+      --cv-muted: #756d64;
+      --cv-soft: #a39a90;
+      --cv-paper: #f5f0e8;
+      --cv-panel: #ebe3d8;
+      --cv-line: #cfc4b7;
+      --cv-accent: #8b6f57;
+      --cv-accent-dark: #6f5745;
+      background: var(--cv-paper) !important;
+      color: var(--cv-ink) !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #resume-preview .cv-serif,
+    #resume-preview h1,
+    #resume-preview h2,
+    #resume-preview h3,
+    #resume-preview h4 {
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    #resume-preview .cv-editorial-header {
+      position: relative;
+      background: var(--cv-paper);
+      padding: 34px 38px 30px;
+      border-bottom: 1px solid var(--cv-line);
+    }
+
+    #resume-preview .cv-editorial-header::after {
+      content: "";
+      position: absolute;
+      right: 38px;
+      bottom: -1px;
+      width: 92px;
+      height: 3px;
+      background: var(--cv-accent);
+    }
+
+    #resume-preview .cv-header-grid {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 26px;
+      align-items: center;
+    }
+
+    #resume-preview #preview-photo-wrap {
+      display: block !important;
+      width: 112px;
+      height: 112px;
+      border: 0 !important;
+      border-radius: 9999px !important;
+      background: var(--cv-panel) !important;
+      box-shadow: 0 0 0 7px var(--cv-panel);
+      overflow: hidden;
+    }
+
+    #resume-preview #preview-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #resume-preview .cv-kicker {
+      margin: 0;
+      color: var(--cv-accent-dark);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    #resume-preview #preview-name {
+      margin-top: 5px;
+      color: var(--cv-ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 35px;
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: .025em;
+      text-transform: uppercase;
+    }
+
+    #resume-preview #preview-title {
+      margin-top: 9px;
+      color: var(--cv-muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    #resume-preview .cv-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 15px;
+      margin-top: 16px;
+      color: var(--cv-muted);
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    #resume-preview .cv-contact span {
+      position: relative;
+    }
+
+    #resume-preview .cv-contact span + span::before {
+      content: "•";
+      position: absolute;
+      left: -10px;
+      color: var(--cv-accent);
+    }
+
+    #resume-preview .cv-body {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 0;
+      padding: 0;
+    }
+
+    #resume-preview .cv-sidebar {
+      background: var(--cv-panel);
+      padding: 30px 22px;
+      min-height: 600px;
+    }
+
+    #resume-preview .cv-main {
+      padding: 30px 34px 36px;
+      min-width: 0;
+    }
+
+    #resume-preview .cv-section {
+      margin: 0 0 25px;
+    }
+
+    #resume-preview .cv-section:last-child {
+      margin-bottom: 0;
+    }
+
+    #resume-preview .cv-section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 12px;
+      color: var(--cv-accent-dark);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    #resume-preview .cv-section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--cv-line);
+    }
+
+    #resume-preview .cv-summary {
+      max-width: 590px;
+      color: var(--cv-muted);
+      font-size: 10px;
+      line-height: 1.75;
+    }
+
+    #resume-preview .cv-project {
+      position: relative;
+      margin: 0 0 19px;
+      padding: 0 0 18px 18px;
+      border-left: 1px solid var(--cv-line);
+    }
+
+    #resume-preview .cv-project::before {
+      content: "";
+      position: absolute;
+      left: -4px;
+      top: 4px;
+      width: 7px;
+      height: 7px;
+      border: 1px solid var(--cv-accent);
+      border-radius: 50%;
+      background: var(--cv-paper);
+    }
+
+    #resume-preview .cv-project:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    #resume-preview .cv-project-title {
+      color: var(--cv-ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    #resume-preview .cv-project-role {
+      margin-top: 3px;
+      color: var(--cv-accent-dark);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    #resume-preview .cv-project p,
+    #resume-preview .cv-project li {
+      color: var(--cv-muted);
+      font-size: 9px;
+      line-height: 1.55;
+    }
+
+    #resume-preview .cv-tech {
+      margin-top: 5px;
+      color: var(--cv-muted);
+      font-size: 8px;
+      line-height: 1.5;
+    }
+
+    #resume-preview .cv-tech strong {
+      color: var(--cv-ink);
+    }
+
+    #resume-preview .cv-education {
+      padding-top: 2px;
+    }
+
+    #resume-preview .cv-school {
+      color: var(--cv-ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    #resume-preview .cv-degree {
+      margin-top: 4px;
+      color: var(--cv-accent-dark);
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    #resume-preview .cv-field {
+      margin-top: 3px;
+      color: var(--cv-muted);
+      font-size: 8px;
+      line-height: 1.5;
+    }
+
+    #resume-preview .cv-sidebar .cv-section-title {
+      margin-bottom: 13px;
+    }
+
+    #resume-preview #preview-skill-name {
+      color: var(--cv-ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    #resume-preview #preview-skill-level {
+      margin-top: 3px;
+      color: var(--cv-accent-dark);
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    #resume-preview #preview-skills {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 5px;
+      margin-top: 12px;
+    }
+
+    #resume-preview #preview-skills > * {
+      display: block;
+      width: 100%;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(111, 87, 69, .18);
+      color: var(--cv-muted) !important;
+      background: transparent !important;
+      font-size: 8px;
+      line-height: 1.35;
+    }
+
+    #resume-preview #preview-reference-section {
+      margin-top: 28px;
+    }
+
+    #resume-preview .cv-reference {
+      padding: 0;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    #resume-preview #preview-reference-name {
+      color: var(--cv-ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    #resume-preview #preview-reference-relationship,
+    #resume-preview #preview-reference-email,
+    #resume-preview #preview-reference-phone {
+      color: var(--cv-muted);
+      font-size: 8px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 767px) {
+      #resume-preview .cv-editorial-header {
+        padding: 28px 24px;
+      }
+
+      #resume-preview .cv-header-grid {
+        grid-template-columns: 82px minmax(0, 1fr);
+        gap: 18px;
+      }
+
+      #resume-preview #preview-photo-wrap {
+        width: 82px;
+        height: 82px;
+      }
+
+      #resume-preview #preview-name {
+        font-size: 25px;
+      }
+
+      #resume-preview .cv-body {
+        grid-template-columns: 1fr;
+      }
+
+      #resume-preview .cv-sidebar {
+        min-height: auto;
+        padding: 24px;
+      }
+
+      #resume-preview .cv-main {
+        padding: 28px 24px;
+      }
     }
 
     /* Professional CV print layout */
@@ -379,7 +727,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       <div class="mt-8 border-t border-slate-100 pt-8">
 
-        <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+        <div class="cv-header-grid">
 
           <!-- Profile photo -->
           <div
@@ -527,7 +875,7 @@ document.addEventListener("DOMContentLoaded", function () {
       action="#"
       method="post"
       enctype="multipart/form-data"
-      class="space-y-6"
+      class=""
     >
 
 
@@ -966,7 +1314,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   E-commerce / Full-Stack Web Application
                 </p>
 
-                <p class="mt-2 text-xs leading-5 text-slate-500">
+                <p class="cv-tech">
                   Developed a modern e-commerce platform with product
                   management, inventory intelligence, order management,
                   customer features, analytics, and responsive web interfaces.
@@ -984,7 +1332,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   Client Project • Business Website / Web Application
                 </p>
 
-                <p class="mt-2 text-xs leading-5 text-slate-500">
+                <p class="cv-tech">
                   Developed a responsive client website for a local lechon
                   business, focused on presenting products, pricing, inquiries,
                   and ordering through a professional digital experience.
@@ -1002,7 +1350,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   AI Assistant / Python Project
                 </p>
 
-                <p class="mt-2 text-xs leading-5 text-slate-500">
+                <p class="cv-tech">
                   Developed an AI assistant project using Python with a focus
                   on automation, voice interaction, tools, and intelligent
                   workflows.
@@ -1020,7 +1368,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   Responsive Web Development
                 </p>
 
-                <p class="mt-2 text-xs leading-5 text-slate-500">
+                <p class="cv-tech">
                   Designed and developed a responsive personal portfolio
                   showcasing programming, web-development, and project work.
                 </p>
@@ -1275,9 +1623,9 @@ document.addEventListener("DOMContentLoaded", function () {
         >
 
           <!-- CV HEADER -->
-          <header class="border-b-4 border-indigo-600 bg-slate-950 px-6 py-8 text-white sm:px-10 sm:py-9">
+          <header class="cv-editorial-header">
 
-            <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+            <div class="cv-header-grid">
 
               <div
                 id="preview-photo-wrap"
@@ -1291,7 +1639,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 >
               </div>
 
-              <div class="min-w-0 flex-1">
+              <div class="min-w-0">
 
                 <p
                   id="preview-name"
@@ -1302,12 +1650,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 <p
                   id="preview-title"
-                  class="mt-2 text-base font-semibold text-indigo-300 sm:text-lg"
+                  class="cv-title"
                 >
                   Web Developer
                 </p>
 
-                <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-300 sm:text-sm">
+                <div class="cv-contact">
                   <span id="preview-email">joefellato215@gmail.com</span>
                   <span id="preview-phone">09610414212</span>
                   <span id="preview-location">Cebu, Philippines</span>
@@ -1321,18 +1669,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
           <!-- CV BODY -->
-          <div class="grid gap-8 px-6 py-8 sm:px-10 sm:py-9 lg:grid-cols-[1.75fr_1fr]">
+          <div class="cv-body">
 
             <!-- MAIN COLUMN -->
-            <main class="space-y-8">
+            <main class="cv-main">
 
               <!-- PROFILE -->
               <section>
 
-                <div class="mb-3 flex items-center gap-3">
+                <div class="cv-section-heading">
                   <span class="h-px flex-1 bg-slate-200"></span>
 
-                  <h3 class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">
+                  <h3 class="cv-section-title">
                     Profile
                   </h3>
 
@@ -1341,7 +1689,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 <p
                   id="preview-summary"
-                  class="whitespace-pre-line text-sm leading-7 text-slate-600"
+                  class="cv-summary whitespace-pre-line"
                 >
                   Programmer and Web Developer with a strong interest in building practical, responsive, and user-focused websites and web applications.
                 </p>
@@ -1352,10 +1700,10 @@ document.addEventListener("DOMContentLoaded", function () {
               <!-- EXPERIENCE & PROJECTS -->
               <section>
 
-                <div class="mb-4 flex items-center gap-3">
+                <div class="cv-section-heading">
                   <span class="h-px flex-1 bg-slate-200"></span>
 
-                  <h3 class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">
+                  <h3 class="cv-section-title">
                     Projects &amp; Practical Experience
                   </h3>
 
@@ -1364,43 +1712,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 <div
                   id="preview-experience"
-                  class="space-y-6"
+                  class=""
                 >
 
                   <!-- PROMETHEUS MARKET -->
-                  <article class="relative border-l-2 border-indigo-200 pl-5">
+                  <article class="cv-project">
                     <div class="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-indigo-600 ring-4 ring-white"></div>
 
                     <div class="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                       <div>
-                        <h4 class="text-base font-extrabold text-slate-900">
+                        <h4 class="cv-project-title">
                           Prometheus Market
                         </h4>
 
-                        <p class="text-sm font-semibold text-indigo-600">
+                        <p class="cv-project-role">
                           E-commerce / Full-Stack Web Application
                         </p>
                       </div>
                     </div>
 
-                    <p class="mt-2 text-sm leading-6 text-slate-600">
+                    <p>
                       Developed a modern e-commerce platform with product management,
                       inventory intelligence, order management, customer features,
                       analytics, and responsive web interfaces.
                     </p>
 
-                    <p class="mt-2 text-xs leading-5 text-slate-500">
-                      <span class="font-bold text-slate-700">Technologies:</span>
+                    <p class="cv-tech">
+                      <span class="cv-tech-label">Technologies:</span>
                       HTML5, CSS3, JavaScript, Python, Flask, SQLite
                     </p>
 
-                    <ul class="mt-2 space-y-1 text-xs leading-5 text-slate-500">
-                      <li class="flex gap-2">
-                        <span class="font-bold text-indigo-500">•</span>
+                    <ul class="cv-project-list">
+                      <li class="cv-project-item">
+                        <span class="cv-project-dot">•</span>
                         <span>Built responsive customer-facing commerce interfaces.</span>
                       </li>
-                      <li class="flex gap-2">
-                        <span class="font-bold text-indigo-500">•</span>
+                      <li class="cv-project-item">
+                        <span class="cv-project-dot">•</span>
                         <span>Implemented inventory, order, customer, and analytics workflows.</span>
                       </li>
                     </ul>
@@ -1408,36 +1756,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                   <!-- MIGUEL LECHON -->
-                  <article class="relative border-l-2 border-slate-200 pl-5">
+                  <article class="cv-project">
                     <div class="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-slate-400 ring-4 ring-white"></div>
 
-                    <h4 class="text-base font-extrabold text-slate-900">
+                    <h4 class="cv-project-title">
                       Miguel Lechon
                     </h4>
 
-                    <p class="text-sm font-semibold text-indigo-600">
+                    <p class="cv-project-role">
                       Client Project • Business Website / Web Application
                     </p>
 
-                    <p class="mt-2 text-sm leading-6 text-slate-600">
+                    <p>
                       Developed a responsive client website for a local lechon
                       business, focused on presenting products, pricing,
                       inquiries, and ordering through a professional digital
                       experience.
                     </p>
 
-                    <p class="mt-2 text-xs leading-5 text-slate-500">
-                      <span class="font-bold text-slate-700">Technologies:</span>
+                    <p class="cv-tech">
+                      <span class="cv-tech-label">Technologies:</span>
                       HTML5, CSS3, JavaScript, Responsive Web Design
                     </p>
 
-                    <ul class="mt-2 space-y-1 text-xs leading-5 text-slate-500">
-                      <li class="flex gap-2">
-                        <span class="font-bold text-slate-400">•</span>
+                    <ul class="cv-project-list">
+                      <li class="cv-project-item">
+                        <span class="cv-project-dot">•</span>
                         <span>Created a mobile-friendly layout for business content and services.</span>
                       </li>
-                      <li class="flex gap-2">
-                        <span class="font-bold text-slate-400">•</span>
+                      <li class="cv-project-item">
+                        <span class="cv-project-dot">•</span>
                         <span>Focused on clear presentation, usability, and responsive design.</span>
                       </li>
                     </ul>
@@ -1445,34 +1793,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                   <!-- OCULUS AI -->
-                  <article class="relative border-l-2 border-slate-200 pl-5">
+                  <article class="cv-project">
                     <div class="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-slate-400 ring-4 ring-white"></div>
 
-                    <h4 class="text-base font-extrabold text-slate-900">
+                    <h4 class="cv-project-title">
                       Oculus AI
                     </h4>
 
-                    <p class="text-sm font-semibold text-indigo-600">
+                    <p class="cv-project-role">
                       AI Assistant / Python Project
                     </p>
 
-                    <p class="mt-2 text-sm leading-6 text-slate-600">
+                    <p>
                       Developed an AI assistant project using Python with a focus on
                       automation, voice interaction, tools, and intelligent workflows.
                     </p>
 
-                    <p class="mt-2 text-xs leading-5 text-slate-500">
-                      <span class="font-bold text-slate-700">Technologies:</span>
+                    <p class="cv-tech">
+                      <span class="cv-tech-label">Technologies:</span>
                       Python, Flask, AI Tools, Automation
                     </p>
 
-                    <ul class="mt-2 space-y-1 text-xs leading-5 text-slate-500">
-                      <li class="flex gap-2">
-                        <span class="font-bold text-slate-400">•</span>
+                    <ul class="cv-project-list">
+                      <li class="cv-project-item">
+                        <span class="cv-project-dot">•</span>
                         <span>Developed Python-based assistant functionality and automation workflows.</span>
                       </li>
-                      <li class="flex gap-2">
-                        <span class="font-bold text-slate-400">•</span>
+                      <li class="cv-project-item">
+                        <span class="cv-project-dot">•</span>
                         <span>Explored voice interaction and tool-based intelligent workflows.</span>
                       </li>
                     </ul>
@@ -1480,34 +1828,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                   <!-- PERSONAL PORTFOLIO -->
-                  <article class="relative border-l-2 border-slate-200 pl-5">
+                  <article class="cv-project">
                     <div class="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-slate-400 ring-4 ring-white"></div>
 
-                    <h4 class="text-base font-extrabold text-slate-900">
+                    <h4 class="cv-project-title">
                       Personal Portfolio
                     </h4>
 
-                    <p class="text-sm font-semibold text-indigo-600">
+                    <p class="cv-project-role">
                       Responsive Web Development
                     </p>
 
-                    <p class="mt-2 text-sm leading-6 text-slate-600">
+                    <p>
                       Designed and developed a responsive personal portfolio
                       showcasing programming, web-development, and project work.
                     </p>
 
-                    <p class="mt-2 text-xs leading-5 text-slate-500">
-                      <span class="font-bold text-slate-700">Technologies:</span>
+                    <p class="cv-tech">
+                      <span class="cv-tech-label">Technologies:</span>
                       HTML5, CSS3, JavaScript, Responsive Web Design
                     </p>
 
-                    <ul class="mt-2 space-y-1 text-xs leading-5 text-slate-500">
-                      <li class="flex gap-2">
-                        <span class="font-bold text-slate-400">•</span>
+                    <ul class="cv-project-list">
+                      <li class="cv-project-item">
+                        <span class="cv-project-dot">•</span>
                         <span>Created a responsive portfolio to present technical projects and skills.</span>
                       </li>
-                      <li class="flex gap-2">
-                        <span class="font-bold text-slate-400">•</span>
+                      <li class="cv-project-item">
+                        <span class="cv-project-dot">•</span>
                         <span>Focused on clean navigation, presentation, and mobile usability.</span>
                       </li>
                     </ul>
@@ -1521,35 +1869,35 @@ document.addEventListener("DOMContentLoaded", function () {
               <!-- EDUCATION -->
               <section>
 
-                <div class="mb-4 flex items-center gap-3">
+                <div class="cv-section-heading">
                   <span class="h-px flex-1 bg-slate-200"></span>
 
-                  <h3 class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">
+                  <h3 class="cv-section-title">
                     Education
                   </h3>
 
                   <span class="h-px flex-1 bg-slate-200"></span>
                 </div>
 
-                <div class="border-l-4 border-indigo-100 pl-5">
+                <div class="cv-education">
 
                   <p
                     id="preview-school"
-                    class="text-base font-extrabold text-slate-900"
+                    class="cv-school"
                   >
                     Colegio De San Antonio De Padua (CSAP)
                   </p>
 
                   <p
                     id="preview-degree"
-                    class="mt-1 text-sm font-semibold text-slate-700"
+                    class="cv-degree"
                   >
                     Computer Engineering — Undergraduate
                   </p>
 
                   <p
                     id="preview-field"
-                    class="mt-1 text-xs leading-5 text-slate-500"
+                    class="cv-field"
                   >
                     Computer Engineering · Undergraduate — Degree Not Completed
                   </p>
@@ -1562,15 +1910,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             <!-- SIDEBAR -->
-            <aside class="space-y-8 lg:border-l lg:border-slate-200 lg:pl-7">
+            <aside class="cv-sidebar">
 
               <!-- SKILLS -->
               <section>
 
-                <div class="mb-4 flex items-center gap-3">
+                <div class="cv-section-heading">
                   <span class="h-px flex-1 bg-slate-200"></span>
 
-                  <h3 class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">
+                  <h3 class="cv-section-title">
                     Skills
                   </h3>
 
@@ -1581,14 +1929,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                   <p
                     id="preview-skill-name"
-                    class="text-base font-extrabold text-slate-900"
+                    class="cv-sidebar-heading"
                   >
                     Web Development
                   </p>
 
                   <p
                     id="preview-skill-level"
-                    class="mt-1 text-xs font-semibold text-slate-500"
+                    class="cv-sidebar-meta"
                   >
                     Developing
                   </p>
@@ -1606,17 +1954,17 @@ document.addEventListener("DOMContentLoaded", function () {
               <!-- REFERENCES -->
               <section id="preview-reference-section">
 
-                <div class="mb-4 flex items-center gap-3">
+                <div class="cv-section-heading">
                   <span class="h-px flex-1 bg-slate-200"></span>
 
-                  <h3 class="text-xs font-extrabold uppercase tracking-[0.2em] text-indigo-600">
+                  <h3 class="cv-section-title">
                     Reference
                   </h3>
 
                   <span class="h-px flex-1 bg-slate-200"></span>
                 </div>
 
-                <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm">
+                <div class="cv-reference">
 
                   <p
                     id="preview-reference-name"
@@ -1673,11 +2021,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
           <div>
             <h2 class="text-xl font-bold text-slate-950">
-              Download Your CV
+              View My CV
             </h2>
 
             <p class="mt-1 text-sm text-slate-500">
-              Review your information, then download your professional CV.
+              Review the live preview above to make sure my information is accurate and up to date before opening my CV.
             </p>
           </div>
 
@@ -1693,12 +2041,9 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
 
           <p class="text-sm font-semibold text-slate-700">
-            Your CV is ready
+            My professional CV is ready.
           </p>
 
-          <p class="mt-1 text-xs leading-5 text-slate-400">
-            Use the live preview above to review your professional CV before downloading.
-          </p>
 
           <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
 
@@ -1707,7 +2052,7 @@ document.addEventListener("DOMContentLoaded", function () {
               id="download-resume"
               class="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20"
             >
-              Download Your CV
+              View My CV
             </button>
 
 
@@ -1717,7 +2062,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
 
         <p class="mt-6 text-center text-xs leading-5 text-slate-400">
-          By downloading this CV, you confirm that the information provided is accurate.
+          By opening this CV, you confirm that the information provided is accurate and up to date.
         </p>
 
       </section>
